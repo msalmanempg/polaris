@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`units Should export units of Project 1`] = `"https://localhost:3000/testfile"`;
+
+exports[`units Should list all units 1`] = `
+Object {
+  "count": Any<Number>,
+  "pageSize": 10,
+  "results": Any<Array>,
+}
+`;
+
+exports[`units Should list all units 2`] = `
+Object {
+  "Project": Object {
+    "name": "Project 1 for units",
+  },
+  "basePrice": 5000000,
+  "bed": 3,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 1250,
+  "id": Any<Number>,
+  "location": "Block A, Street 5",
+  "meta": null,
+  "netArea": 1250,
+  "projectId": Any<Number>,
+  "publishedPrice": 5500000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should list all units 3`] = `
+Object {
+  "Project": Object {
+    "name": "Project 1 for units",
+  },
+  "basePrice": 10000000,
+  "bed": 6,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 2500,
+  "id": Any<Number>,
+  "location": "Block B, Street 6",
+  "meta": null,
+  "netArea": 2500,
+  "projectId": Any<Number>,
+  "publishedPrice": 10000000,
+  "status": "booked",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should list units with stats: all 1`] = `
+Object {
+  "count": Any<Number>,
+  "status": "all",
+}
+`;
+
+exports[`units Should list units with stats: available 1`] = `
+Object {
+  "count": Any<Number>,
+  "status": "available",
+}
+`;
+
+exports[`units Should list units with stats: booked 1`] = `
+Object {
+  "count": Any<Number>,
+  "status": "booked",
+}
+`;
+
+exports[`units Should upload units 1`] = `
+Object {
+  "basePrice": 100000,
+  "bed": 1,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 230,
+  "id": Any<Number>,
+  "location": "DHA",
+  "meta": null,
+  "netArea": 200,
+  "projectId": Any<Number>,
+  "publishedPrice": 120000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should upload units 2`] = `
+Object {
+  "basePrice": 100000,
+  "bed": 1,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 230,
+  "id": Any<Number>,
+  "location": "DHA",
+  "meta": null,
+  "netArea": 200,
+  "projectId": Any<Number>,
+  "publishedPrice": 120000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should upload units 3`] = `
+Object {
+  "basePrice": 100000,
+  "bed": 1,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 230,
+  "id": Any<Number>,
+  "location": "DHA",
+  "meta": null,
+  "netArea": 200,
+  "projectId": Any<Number>,
+  "publishedPrice": 120000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should upload units 4`] = `
+Object {
+  "basePrice": 100000,
+  "bed": 1,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 230,
+  "id": Any<Number>,
+  "location": "DHA",
+  "meta": null,
+  "netArea": 200,
+  "projectId": Any<Number>,
+  "publishedPrice": 120000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should upload units 5`] = `
+Object {
+  "basePrice": 100000,
+  "bed": 1,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 230,
+  "id": Any<Number>,
+  "location": "DHA",
+  "meta": null,
+  "netArea": 200,
+  "projectId": Any<Number>,
+  "publishedPrice": 120000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`units Should upload units 6`] = `
+Object {
+  "basePrice": 100000,
+  "bed": 1,
+  "completionDate": Any<String>,
+  "createdAt": Any<String>,
+  "grossArea": 230,
+  "id": Any<Number>,
+  "location": "DHA",
+  "meta": null,
+  "netArea": 200,
+  "projectId": Any<Number>,
+  "publishedPrice": 120000,
+  "status": "available",
+  "type": "residential",
+  "unitNumber": Any<String>,
+  "updatedAt": Any<String>,
+}
+`;

@@ -1,0 +1,12 @@
+model Attachment {
+  id                   Int                   @id @default(autoincrement())
+  name                 String
+  key                  String
+  customerAttachments  CustomerAttachment[]
+  nomineeAttachments   NomineeAttachment[]
+  agreementAttachments AgreementAttachment[]
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @updatedAt @map("updated_at")
+
+  @@map("attachments")
+}

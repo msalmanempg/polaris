@@ -1,0 +1,136 @@
+<mat-card-content class="form-container" [formGroup]="customerDetailForm">
+
+  <div class="group-form-field-container" *ngIf="!isJointCustomerForm">
+    <app-dropdown [options]="customerTypeOptions" [searchable]="false" [required]="true" formControlName="type"
+      [label]="'Customer Type'" (selectedValueChange)="customerTypeChange.emit($event)" class="form-field-group">
+    </app-dropdown>
+  </div>
+
+  <div class="group-form-field-container">
+    <app-dropdown [options]="govtIdTypeOptions" [searchable]="false" formControlName="govtIdType"
+      [label]="'Goverment Id Type'" class="form-field-group" [required]="true"
+      (selectedValueChange)="govtIdTypeChange($event)" > </app-dropdown>
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Goverment ID</mat-label>
+      <input matInput [mask]="cnicMask" formControlName="govtId" [placeholder]="cnicMask"  [dropSpecialCharacters]="false" required />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Full Name</mat-label>
+    <input matInput type="text" formControlName="fullName" required />
+  </mat-form-field>
+
+  <div class="group-form-field-container">
+    <app-dropdown [options]="relationshipTypeOptions" [searchable]="false" formControlName="relationType"
+      [label]="'Relationship'" class="form-field-group" [required]="true"> </app-dropdown>
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input matInput type="text" formControlName="guardianName" required />
+    </mat-form-field>
+  </div>
+
+  <div class="group-form-field-container">
+    <app-dropdown [options]="countryDropdownOptions" formControlName="nationality" [searchable]="false"
+      [label]="'Nationality'" class="form-field-group" [required]="true"> </app-dropdown>
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Passport Number</mat-label>
+      <input matInput type="text" formControlName="passportNumber" placeholder="xxxxxxxxx" />
+      <mat-error> Alphanumeric 9 characters </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="group-form-field-container">
+    <app-dropdown [options]="genderTypeOptions" [searchable]="false" formControlName="gender" [label]="'Gender'"
+      class="form-field-group" [required]="true">
+    </app-dropdown>
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>DOB</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Address</mat-label>
+    <input matInput type="text" formControlName="address" required />
+  </mat-form-field>
+
+  <div class="group-form-field-container">
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country" required>
+        <mat-option *ngFor="let country of countries" [value]="country.name"
+          (onSelectionChange)="onCountryChange($event, country)">
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Province</mat-label>
+      <mat-select formControlName="province" required>
+        <mat-option *ngFor="let state of states" [value]="state.name"
+          (onSelectionChange)="onStateChange($event, state)">
+          {{ state.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="group-form-field-container">
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>City</mat-label>
+      <mat-select formControlName="city" required>
+        <mat-option *ngFor="let city of cities" [value]="city.name">
+          {{ city.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Email Address</mat-label>
+    <input matInput type="text" formControlName="email" required />
+  </mat-form-field>
+
+  <div class="group-form-field-container">
+    <app-multicell-input class="form-field-group" [phoneLabel]="'Primary Contact Number'"
+      formControlName="primaryContactNumber" name="primaryContactNumber">
+    </app-multicell-input>
+
+    <app-multicell-input class="form-field-group" [phoneLabel]="'Secondary Contact Number'"
+      formControlName="secondaryContactNumber" name="secondaryContactNumber">
+    </app-multicell-input>
+
+  </div>
+
+  <div class="group-form-field-container">
+    <img mat-card-image class="main-image" [src]="profileImg" (click)="uploadProjectImage.click()" />
+    <input #uploadProjectImage type="file" class="hide" (change)="onProfileImageUpload($event)" [accept]="allowedTypes" />
+    <div class="id-info-section image-info-text">
+      <h3>
+        Upload Image
+      </h3>
+      <span>
+        This information will be used in account statements
+      </span>
+      <span [ngClass]="isInvalidFileFormat ? 'error' : ''">
+        Supported Formats: JPEG, JPG, PNG, SVG
+      </span>
+      <span [ngClass]="isInvalidDimension ? 'error' : ''">
+        Dimensions: Width: 600 px | Height: 600 px
+      </span>
+    </div>
+  </div>
+
+  <div class="group-form-field-container">
+    <app-file-upload [label]="'GOVT.ID FRONT'" [allowedTypes]="allowedTypes"
+      (uploadFile)="onFileUpload($event, 'ID_FRONT')" (cancelFile)="onCancelFile('ID_FRONT')"></app-file-upload>
+    <app-file-upload [label]="'GOVT.ID BACK'" class="margin-left" [allowedTypes]="allowedTypes"
+      (uploadFile)="onFileUpload($event, 'ID_BACK')" (cancelFile)="onCancelFile('ID_BACK')"></app-file-upload>
+  </div>
+
+</mat-card-content>

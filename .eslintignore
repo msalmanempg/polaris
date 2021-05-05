@@ -1,0 +1,11 @@
+/*.*
+/linters
+**/__snapshots__/
+**/build/
+**/coverage/
+**/dist/
+**/lib/
+**/node_modules/
+jest.config.js
+karma.conf.js
+*.d.ts

@@ -1,0 +1,19 @@
+<div class="title-section">
+    <span class="header"> Units: Import File Status </span>
+</div>
+<div class="count-status">
+    <span>Created: {{ rowsCreated }}</span> 
+    <span>Updated: {{ rowsUpdated }}</span> 
+    <span>Rejected: {{ rowsRejected }}</span> 
+</div>
+<mat-list *ngIf="errorInfo">
+    <mat-list-item matLine *ngFor="let item of errorInfo | keyvalue">
+            {{item.value}}
+    </mat-list-item>
+</mat-list>
+<div *ngIf="alternateErrorMessage">
+    {{alternateErrorMessage}}
+</div>
+<div class="action-buttons">
+    <button mat-flat-button class="dialog-action-button" (click)="closeClicked.emit()">CLOSE</button>
+</div>

@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`agreements Should create new agreement 1`] = `
+Object {
+  "Unit": Object {
+    "basePrice": 5000000,
+    "bed": 3,
+    "completionDate": "2021-02-19T05:20:07.269Z",
+    "createdAt": Any<String>,
+    "grossArea": 1250,
+    "id": Any<Number>,
+    "location": "Block A, Street 5",
+    "meta": null,
+    "netArea": 1250,
+    "projectId": Any<Number>,
+    "publishedPrice": 5500000,
+    "status": "booked",
+    "type": "residential",
+    "unitNumber": "unit-agreement",
+    "updatedAt": Any<String>,
+  },
+  "agreementDate": "2022-02-15T00:03:58.000Z",
+  "agreementNumber": "ABC101019",
+  "bookingDate": "2022-02-15T00:03:58.000Z",
+  "bookingPrice": 10000,
+  "company": Object {},
+  "createdAt": Any<String>,
+  "customers": Array [
+    Object {
+      "address": "Some Address",
+      "agreementId": Any<Number>,
+      "createdAt": Any<String>,
+      "customerId": Any<Number>,
+      "email": "m.ali@gmail.com",
+      "id": Any<Number>,
+      "isPrimary": true,
+      "meta": null,
+      "primaryPhoneNumber": "+923006898283",
+      "secondaryPhoneNumber": null,
+      "type": "company",
+      "updatedAt": Any<String>,
+    },
+  ],
+  "discountValue": 100,
+  "id": Any<Number>,
+  "installmentEndDate": "2022-02-15T00:03:58.000Z",
+  "installmentStartDate": "2022-02-15T00:03:58.000Z",
+  "leadId": 101019,
+  "nominees": Array [
+    Object {
+      "agreementId": Any<Number>,
+      "contactNumber": "03216786543",
+      "createdAt": Any<String>,
+      "email": "arslan.ali@gmail.com",
+      "fullName": "Arslan Ali",
+      "govtId": "10203040506070",
+      "govtIdType": "cnic",
+      "id": Any<Number>,
+      "meta": null,
+      "nomineeFor": "Muhammad Ali",
+      "relationship": "Brother",
+      "updatedAt": Any<String>,
+    },
+  ],
+  "notarisedDate": "2022-02-15T00:03:58.000Z",
+  "posessionValue": 2000,
+  "publishedPrice": 10000,
+  "salesPerson": Array [
+    Object {
+      "agreementId": Any<Number>,
+      "createdAt": Any<String>,
+      "designation": "Manager",
+      "email": "ali.raza@gmail.com",
+      "fullName": "Ali Raza",
+      "govtId": "19293949596979",
+      "id": Any<Number>,
+      "phoneNumber": "03136799098",
+      "sortLevel": 0,
+      "updatedAt": Any<String>,
+    },
+  ],
+  "status": "active",
+  "unitId": Any<Number>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`agreements Should fecth details of an agreement 1`] = `
+Object {
+  "Unit": Object {
+    "basePrice": 5000000,
+    "bed": 3,
+    "completionDate": "2021-02-19T05:20:07.269Z",
+    "createdAt": Any<String>,
+    "grossArea": 1250,
+    "id": Any<Number>,
+    "location": "Block A, Street 5",
+    "meta": null,
+    "netArea": 1250,
+    "projectId": Any<Number>,
+    "publishedPrice": 5500000,
+    "status": "available",
+    "type": "residential",
+    "unitNumber": "Project 1 for agreements - unit-a for agreements",
+    "updatedAt": Any<String>,
+  },
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-01",
+  "bookingDate": "2021-02-20T05:20:07.269Z",
+  "bookingPrice": 5000000,
+  "createdAt": Any<String>,
+  "customers": Array [
+    Object {
+      "address": "Lahore, Pakistan",
+      "agreementId": Any<Number>,
+      "createdAt": Any<String>,
+      "customerId": Any<Number>,
+      "email": "individual@email.com",
+      "id": Any<Number>,
+      "isPrimary": true,
+      "meta": null,
+      "primaryPhoneNumber": "9230050000000",
+      "secondaryPhoneNumber": "9230050000001",
+      "type": "individual",
+      "updatedAt": Any<String>,
+    },
+    Object {
+      "address": "Lahore, Pakistan",
+      "agreementId": Any<Number>,
+      "createdAt": Any<String>,
+      "customerId": Any<Number>,
+      "email": "individual2@email.com",
+      "id": Any<Number>,
+      "isPrimary": false,
+      "meta": null,
+      "primaryPhoneNumber": "9230040000000",
+      "secondaryPhoneNumber": "9230040000001",
+      "type": "individual",
+      "updatedAt": Any<String>,
+    },
+  ],
+  "discountValue": 500000,
+  "id": Any<Number>,
+  "installmentEndDate": "2022-02-23T05:20:07.269Z",
+  "installmentStartDate": "2021-02-23T05:20:07.269Z",
+  "leadId": 1,
+  "nominees": Array [],
+  "notarisedDate": "2021-02-21T05:20:07.269Z",
+  "posessionValue": 1000000,
+  "publishedPrice": 5500000,
+  "salesPerson": Array [],
+  "status": "active",
+  "unitId": Any<Number>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`agreements Should list all agreements for a project id 1`] = `
+Object {
+  "agreements": Any<Array>,
+  "count": 2,
+  "pageOffset": 0,
+  "pageSize": 10,
+}
+`;
+
+exports[`agreements Should list all agreements for a project id 2`] = `
+Object {
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-01",
+  "customer": Any<Object>,
+  "id": Any<Number>,
+  "noticesCount": 0,
+  "overduePayments": 0,
+  "paymentPercentage": 0,
+  "status": "active",
+  "unit": Object {
+    "id": Any<Number>,
+    "project": Object {
+      "id": Any<Number>,
+      "name": "Project 1 for agreements",
+    },
+    "unitNumber": "Project 1 for agreements - unit-a for agreements",
+  },
+}
+`;
+
+exports[`agreements Should list all agreements for a project id 3`] = `
+Object {
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-02",
+  "customer": Any<Object>,
+  "id": Any<Number>,
+  "noticesCount": 0,
+  "overduePayments": 0,
+  "paymentPercentage": 0,
+  "status": "draft",
+  "unit": Object {
+    "id": Any<Number>,
+    "project": Object {
+      "id": Any<Number>,
+      "name": "Project 1 for agreements",
+    },
+    "unitNumber": "Project 1 for agreements - unit-b for agreements",
+  },
+}
+`;
+
+exports[`agreements Should list all agreements for customer govt id 1`] = `
+Object {
+  "agreements": Any<Array>,
+  "count": 1,
+  "pageOffset": 0,
+  "pageSize": 10,
+}
+`;
+
+exports[`agreements Should list all agreements for customer govt id 2`] = `
+Object {
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-01",
+  "customer": Any<Object>,
+  "id": Any<Number>,
+  "noticesCount": 0,
+  "overduePayments": 0,
+  "paymentPercentage": 0,
+  "status": "active",
+  "unit": Object {
+    "id": Any<Number>,
+    "project": Object {
+      "id": Any<Number>,
+      "name": "Project 1 for agreements",
+    },
+    "unitNumber": "Project 1 for agreements - unit-a for agreements",
+  },
+}
+`;
+
+exports[`agreements Should list all agreements with no filter 1`] = `
+Object {
+  "agreements": Any<Array>,
+  "count": 2,
+  "pageOffset": 0,
+  "pageSize": 10,
+}
+`;
+
+exports[`agreements Should list all agreements with no filter 2`] = `
+Object {
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-01",
+  "customer": Any<Object>,
+  "id": Any<Number>,
+  "noticesCount": 0,
+  "overduePayments": 0,
+  "paymentPercentage": 0,
+  "status": "active",
+  "unit": Object {
+    "id": Any<Number>,
+    "project": Object {
+      "id": Any<Number>,
+      "name": "Project 1 for agreements",
+    },
+    "unitNumber": "Project 1 for agreements - unit-a for agreements",
+  },
+}
+`;
+
+exports[`agreements Should list all agreements with no filter 3`] = `
+Object {
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-02",
+  "customer": Any<Object>,
+  "id": Any<Number>,
+  "noticesCount": 0,
+  "overduePayments": 0,
+  "paymentPercentage": 0,
+  "status": "draft",
+  "unit": Object {
+    "id": Any<Number>,
+    "project": Object {
+      "id": Any<Number>,
+      "name": "Project 1 for agreements",
+    },
+    "unitNumber": "Project 1 for agreements - unit-b for agreements",
+  },
+}
+`;
+
+exports[`agreements Should list all agreements with stats 1`] = `
+Object {
+  "agreements": Any<Array>,
+  "count": Any<Number>,
+  "pageOffset": 0,
+  "pageSize": 10,
+  "stats": Array [
+    Object {
+      "count": 1,
+      "status": "active",
+    },
+    Object {
+      "count": 2,
+      "status": "all",
+    },
+    Object {
+      "count": 1,
+      "status": "draft",
+    },
+  ],
+}
+`;
+
+exports[`agreements Should list all agreements with status 1`] = `
+Object {
+  "agreements": Any<Array>,
+  "count": 1,
+  "pageOffset": 0,
+  "pageSize": 10,
+}
+`;
+
+exports[`agreements Should list all agreements with status 2`] = `
+Object {
+  "agreementDate": "2021-02-22T05:20:07.269Z",
+  "agreementNumber": "AG-01",
+  "customer": Any<Object>,
+  "id": Any<Number>,
+  "noticesCount": 0,
+  "overduePayments": 0,
+  "paymentPercentage": 0,
+  "status": "active",
+  "unit": Object {
+    "id": Any<Number>,
+    "project": Object {
+      "id": Any<Number>,
+      "name": "Project 1 for agreements",
+    },
+    "unitNumber": "Project 1 for agreements - unit-a for agreements",
+  },
+}
+`;
+
+exports[`agreements should check availability of an agreement number 1`] = `true`;

@@ -1,0 +1,50 @@
+<mat-card-content class="form-container" [formGroup]="agreementDetailForm">
+
+  <div class="group-form-field-container">
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Published Price</mat-label>
+      <input matInput type="text" formControlName="publishedPrice" required (blur)="formatAmountValue('publishedPrice')" 
+      [value]="agreementDetailForm.get('publishedPrice').value | currencyPipe: currencyCode" readonly/>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Booking Price</mat-label>
+      <input matInput formControlName="bookingPrice" required (blur)="formatAmountValue('bookingPrice')"
+      [value]="agreementDetailForm.get('bookingPrice').value | currencyPipe: currencyCode"  />
+    </mat-form-field>
+
+  </div>
+
+  <div class="group-form-field-container">
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Discount</mat-label>
+      <input matInput type="text" formControlName="discountValue" required readonly  />
+    </mat-form-field>
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Booking Date</mat-label>
+      <input matInput [matDatepicker]="bookingDatePicker" required formControlName="bookingDate" readonly (dateChange)="onBookingDateChange()" />
+      <mat-datepicker-toggle matSuffix [for]="bookingDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #bookingDatePicker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <div class="group-form-field-container">
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Total Down Payment</mat-label>
+      <input matInput type="text" formControlName="posessionValue" required (blur)="formatAmountValue('posessionValue')"/>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-group" appearance="outline">
+      <mat-label>Agreement Date</mat-label>
+      <input matInput [min]="minDate" [matDatepicker]="agreementDatePicker"  formControlName="agreementDate" required>
+      <mat-datepicker-toggle matSuffix [for]="agreementDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #agreementDatePicker></mat-datepicker>
+      <mat-error> Agreement date should be greater than booking date</mat-error>
+    </mat-form-field>
+  </div>
+
+</mat-card-content>

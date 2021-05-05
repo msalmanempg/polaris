@@ -1,0 +1,26 @@
+.data-section {
+  margin-top: 2.5rem;
+}
+
+.section-label {
+  text-align: left;
+  font-family: Georgia;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  min-width: 10rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.18rem;
+  height: 2.65rem;
+  mat-icon {
+    margin: 0.2rem;
+  }
+}

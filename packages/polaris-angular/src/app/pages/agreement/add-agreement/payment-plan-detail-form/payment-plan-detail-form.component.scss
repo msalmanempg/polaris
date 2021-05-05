@@ -1,0 +1,26 @@
+
+.info-container {
+    padding-left: 3rem;
+    align-content: flex-start;
+    margin-inline-end: 3rem;
+    margin-top: 2rem;
+    .sub-title {
+        font-family: Arial;
+        font-style: italic;
+        color: #11141a;
+        opacity: 0.5;
+        font-size: 1.125rem;
+    }
+}
+
+.info-margin-bottom {
+    margin-bottom: auto;
+}
+
+.document-section {
+    display: flex;
+}
+
+.margin-left {
+    margin-left: 1rem;
+}

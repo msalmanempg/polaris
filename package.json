@@ -1,0 +1,92 @@
+{
+  "name": "polaris",
+  "version": "1.0.0",
+  "description": "Zameen Developments CRM",
+  "main": "index.js",
+  "repository": "git@github.com:ray-man/zd-snow-leopard.git",
+  "author": "Rehman Shafi <rehman.shafi@empglabs.com>",
+  "license": "MIT",
+  "private": true,
+  "npmClient": "yarn",
+  "scripts": {
+    "build:all": "yarn prisma:build && yarn domain:build && yarn api:build",
+    "db:create_schema": "echo '🗃️ Compiling Schema File.' && prisma-merge -b ./packages/prisma/models/base.prisma -s ./packages/prisma/models/**/*.prisma -o ./packages/prisma/schema.prisma",
+    "db:generate": "echo '⚙️ Generating Prisma Client' && npx prisma generate --schema=./packages/prisma/schema.prisma",
+    "db:migrate": "echo '🚚 Migrating Database.' && npx prisma migrate dev --preview-feature --schema=./packages/prisma/schema.prisma",
+    "db:migrate:force": "echo '🚚 Migrating Database.' && npx prisma migrate reset --force --preview-feature --schema=./packages/prisma/schema.prisma",
+    "db:setup": "echo 🛠️ Setting Up DataBase && yarn db:create_schema && yarn db:migrate",
+    "api:dev": "yarn workspace polaris-api dev",
+    "api:build": "yarn workspace polaris-api build",
+    "api:start": "yarn workspace polaris-api start",
+    "api:watch": "yarn workspace polaris-api watch",
+    "api:lint": "yarn workspace polaris-api lint",
+    "preapi:test": "./packages/scripts/start-tests.sh",
+    "api:test": "NODE_ENV=test yarn workspace polaris-api test",
+    "preapi:test:ci": "./packages/scripts/start-tests.sh",
+    "api:test:ci": "NODE_ENV=test yarn workspace polaris-api test:ci",
+    "angular:start": "yarn workspace polaris-angular start",
+    "angular:build": "yarn workspace polaris-angular build",
+    "angular:build:prod": "yarn workspace polaris-angular build:prod",
+    "angular:test": "yarn workspace polaris-angular test",
+    "angular:test:ci": "yarn workspace polaris-angular test:ci",
+    "prisma:build": "yarn workspace @polaris/prisma build",
+    "domain:build": "yarn workspace @polaris/domain build",
+    "lint": "yarn workspaces run lint",
+    "lint:errors": "yarn workspaces run lint:errors",
+    "lint:types": "yarn workspaces run lint:types",
+    "husky:clean": "rimraf .husky",
+    "husky:hooks": "npx husky add .husky/pre-commit 'npx --no-install lint-staged' && npx husky add .husky/commit-msg 'npx commitlint -e'",
+    "husky:setup": "yarn husky:clean && husky install && yarn husky:hooks"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-lodash": "^7.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-unicorn": "^27.0.0",
+    "husky": "^5.0.9",
+    "is-ci": "^2.0.0",
+    "lint-staged": "^10.5.4",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.2.1",
+    "prisma": "^2.21.2",
+    "prisma-dbml-generator": "^0.5.0",
+    "prisma-merge": "^0.2.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.21.2"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --ext .js,.ts --cache --fix",
+      "git add"
+    ],
+    "*.{ts,js,css,md}": [
+      "prettier --config .prettierrc --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+/*.*
+**/__snapshots__/
+**/.ng_build/
+**/build/
+**/coverage/
+**/dist/
+**/lib/
+**/node_modules/
+jest.config.js
+karma.conf.js
+*.d.ts
+
+src/assets/global/plugins/
+src/assets/vendor-js/

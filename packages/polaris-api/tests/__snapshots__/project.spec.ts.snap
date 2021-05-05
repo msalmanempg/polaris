@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`projects Should create a new project 1`] = `
+Object {
+  "address": "Cantt",
+  "bankDetails": ArrayContaining [
+    ObjectContaining {
+      "id": Any<Number>,
+      "projectId": Any<Number>,
+    },
+  ],
+  "city": "Karachi",
+  "completionDate": Any<String>,
+  "country": "Pakistan",
+  "createdAt": Any<String>,
+  "email": "project3@zameen.com",
+  "id": Any<Number>,
+  "latitude": 2.36745,
+  "logo": "http://gdj.graphicdesignjunction.com/wp-content/uploads/2012/07/business-logo-design-2.jpg",
+  "longitude": 4.14678,
+  "meta": null,
+  "name": "Project 4",
+  "phone": "+923007651326",
+  "province": "Sindh",
+  "updatedAt": Any<String>,
+  "url": "https://www.zameendevelopments.com",
+}
+`;
+
+exports[`projects Should get Project details with id 1`] = `
+Object {
+  "address": "Walton",
+  "bankDetails": ArrayContaining [
+    ObjectContaining {
+      "id": Any<Number>,
+      "projectId": Any<Number>,
+    },
+  ],
+  "city": "Lahore",
+  "completionDate": Any<String>,
+  "country": "Pakistan",
+  "createdAt": Any<String>,
+  "email": "project2@zameen.com",
+  "id": Any<Number>,
+  "latitude": 1.36745,
+  "logo": "http://gdj.graphicdesignjunction.com/wp-content/uploads/2012/07/business-logo-design-3.jpg",
+  "longitude": 2.14678,
+  "meta": null,
+  "name": "Project 2",
+  "phone": "+923007651325",
+  "province": "Punjab",
+  "updatedAt": Any<String>,
+  "url": "https://www.zameendevelopments.com",
+}
+`;
+
+exports[`projects Should list all projects 1`] = `
+Object {
+  "count": Any<Number>,
+  "pageOffset": Any<Number>,
+  "pageSize": Any<Number>,
+  "results": ArrayContaining [
+    ObjectContaining {
+      "bankDetails": ArrayContaining [
+        ObjectContaining {
+          "id": Any<Number>,
+          "projectId": Any<Number>,
+        },
+      ],
+      "completionDate": Any<String>,
+      "createdAt": Any<String>,
+      "id": Any<Number>,
+      "updatedAt": Any<String>,
+    },
+  ],
+}
+`;

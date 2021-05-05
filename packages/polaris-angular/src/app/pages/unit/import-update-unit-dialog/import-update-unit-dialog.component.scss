@@ -1,0 +1,76 @@
+@import "../../../../assets/variables.scss";
+.title-section {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 440;
+  margin-bottom: 30px;
+  padding-top: 15px;
+  padding-left: 25px;
+  color: map-get($main-colors, gray-secondary-text-color);
+  display: flex;
+}
+
+.filters-section {
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  mat-label {
+    margin-bottom: 0.5rem;
+    text-align: left;
+    letter-spacing: 0.25px;
+    color: map-get($main-colors, gray-primary-label-color);
+  }
+  .filter-wrapper {
+    margin-top: 0.5rem;
+    width: 320px;
+    height: 56px;
+  }
+  .inventory-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    .filename {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sub-title {
+       color: map-get($main-colors, gray-section-heading-color);
+       font-size: 14px;
+       letter-spacing: 0.25px;
+       margin-top: 1rem;
+       margin-bottom: 0.5rem;
+       font-weight: 550;
+    }
+  }
+  .action-section {
+    align-self: flex-end;
+    margin-top: 2rem;
+    button {
+      margin-right: 1rem;
+    }
+  }
+  .inventory-button {
+    height: 36px;
+    width: 230px;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    text-align: center;
+    letter-spacing: 1.25px;
+    mat-icon {
+      font-size: 1.3rem;
+      margin-right: 0.1rem;
+    }
+  }
+
+  .text {
+    color: $blue-text;
+  }
+  
+  button:disabled,
+  button[disabled] {
+    color: #cccccc;
+  }
+
+}

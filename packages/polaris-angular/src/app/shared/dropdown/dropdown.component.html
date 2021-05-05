@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <mat-select [required]="required" [(ngModel)]="value">
+        <input matInput *ngIf="searchable" type="text" [placeholder]="placeholder" (input)="inputValueChange()" [(ngModel)]="currentValue" >
+        <mat-option *ngFor="let option of displayedDropdownOptions" [value]="option.key"> 
+            {{option.value}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,67 @@
+
+<section class="container">
+  <mat-card class="form-container">
+    <h2>Create Customer</h2>
+
+    <form [formGroup]="addCustomerForm" (submit)="submit()">
+      <mat-form-field  class="form-field"   appearance="outline">
+        <mat-label> Full Name 
+        </mat-label>
+        <input matInput formControlName="fullName" required>
+        <mat-error *ngIf="addCustomerForm.controls.fullName.touched && addCustomerForm.controls.fullName.invalid">
+          <span *ngIf="addCustomerForm.controls.fullName.errors.required">{{errorMessage}}</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field  class="form-field"  appearance="outline">
+          <mat-label> CNIC
+          </mat-label>
+          <input matInput formControlName="cnic"  placeholder="XXXXX-XXXXXXX-X"  required>
+          <mat-error *ngIf="addCustomerForm.controls.cnic.invalid">
+            <span *ngIf="addCustomerForm.controls.cnic.errors.required">{{errorMessage}}</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field   class="form-field"  appearance="outline">
+          <mat-label> E-mail
+          </mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="addCustomerForm.controls.email.touched && addCustomerForm.controls.email.invalid">
+            <span *ngIf="addCustomerForm.controls.email.errors.required">{{errorMessage}}</span>
+            <span *ngIf="addCustomerForm.controls.email.errors.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field  class="form-field"   appearance="outline">
+          <mat-label> Cell Number
+          </mat-label>
+          <input matInput formControlName="cellNumber">
+          <mat-error *ngIf="addCustomerForm.controls.cellNumber.touched && addCustomerForm.controls.cellNumber.invalid">
+            <span *ngIf="addCustomerForm.controls.cellNumber.errors.required">{{errorMessage}}</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Current Addess
+          </mat-label>
+          <input matInput formControlName="currentAddress">
+          <mat-error *ngIf="addCustomerForm.controls.currentAddress.touched && addCustomerForm.controls.currentAddress.invalid">
+            <span *ngIf="addCustomerForm.controls.currentAddress.errors.required">{{errorMessage}}</span>
+          </mat-error>
+        </mat-form-field>
+
+      <div class="action-button">
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <button
+        mat-raised-button
+        type="button"
+        id="add-customer-cancel-button"
+        (click)="dialogRef.close(false)"
+      >
+        Cancel
+      </button>
+      </div>           
+    </form>
+  </mat-card>
+  </section>
+

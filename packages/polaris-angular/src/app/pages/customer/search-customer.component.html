@@ -1,0 +1,14 @@
+<section>
+  <h1 class="section-label">Customers</h1>
+</section>
+
+<div class="container">
+  <app-datatable
+    [rows]="customers"
+    [columns]="columns"
+    [length]="totalCount"
+    [limit]="pageLimit"
+    (pageChange)="onPageChange($event)"
+    (limitChange)="onLimitChange($event)"
+  ></app-datatable>
+</div>

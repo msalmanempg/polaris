@@ -1,0 +1,20 @@
+<div class="generate-plan-section" [formGroup]="paymentPlanForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Installment Start date</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" formControlName="installmentStartDate" required />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="left-margin" appearance="outline">
+        <mat-label>Installment End date</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" formControlName="installmentEndDate" required />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-stroked-button class="generate-plan-button left-margin">GENERATE PLAN</button>
+</div>
+
+<div class="">
+
+</div>

@@ -1,0 +1,33 @@
+model Unit {
+  id             Int              @id @default(autoincrement())
+  unitNumber     String           @unique @map("unit_number")
+  location       String
+  type           unitType
+  bed            Int
+  basePrice      Int              @map("base_price")
+  publishedPrice Int              @map("published_price")
+  netArea        Int              @map("net_area")
+  grossArea      Int              @map("gross_area")
+  meta           Json?
+  status         unitStatus
+  Project        Project          @relation(fields: [projectId], references: [id])
+  projectId      Int              @map("project_id")
+  agreements     Agreement[]
+  drafts         DraftAgreement[]
+  completionDate DateTime?        @map("completion_date")
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
+
+  @@map(name: "units")
+}
+
+enum unitType {
+  residential
+  commercial
+}
+
+enum unitStatus {
+  booked
+  sold
+  available
+}

@@ -1,0 +1,29 @@
+<div class="phone-container fullWidth">
+    <mat-form-field appearance="outline" class="country-code">
+        <mat-label>Code</mat-label>
+        <mat-select required>
+            <mat-option *ngFor="let country of countryDropdownOptions" [value]="country.phonecode"
+                (onSelectionChange)="onCountryChange($event, country)">
+                <span>
+                    {{ country.flag}} {{country.phonecode }} {{country.isoCode }}
+                </span>
+            </mat-option>7
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="phone">
+        <mat-label>{{ phoneLabel }}</mat-label>
+        <input matInput type="tel" 
+        autocomplete="off" 
+        [placeholder]="placeHolder" 
+        [readonly]="!selectedCountry"
+        [(ngModel)]="value"
+        (keypress)="onInputKeyPress($event)"
+        (ngModelChange)="onPhoneNumberChange()"
+        [ngModelOptions]="{updateOn: 'blur'}"
+        required
+        />
+        <mat-error >Invalid Contact Number</mat-error>
+    </mat-form-field>
+   
+</div>

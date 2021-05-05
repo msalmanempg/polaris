@@ -1,0 +1,43 @@
+.project-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: left;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+
+    .form-field {
+      width: 50rem;
+    }
+
+    .group-form-field-container {
+      display: flex;
+      flex-direction: row;
+
+      .form-field-group {
+        width: 24rem;
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  .info-container {
+    font-weight: 500;
+    font-size: 22px;
+    width: 30%;
+  }
+
+  .sub-text {
+    text-align: left;
+    font-family: Arial;
+    font-style: italic;
+    color: #b7b7b7;
+    opacity: 1;
+    margin-inline-end: 1.5rem;
+    font-size: 1rem;
+  }
+}

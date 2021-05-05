@@ -1,0 +1,1 @@
+export { createCustomerValidator } from "./createCustomerValidator";

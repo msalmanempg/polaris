@@ -1,0 +1,153 @@
+version: 2.1
+
+orbs:
+  coveralls: coveralls/coveralls@1.0.5
+
+commands:
+  install-packages:
+    description: "Install yarn packages for the entire monorepo"
+    steps:
+      - restore_cache:
+          keys:
+            - yarn-v2-{{ checksum "yarn.lock" }}
+            - yarn-v2-
+      - run: yarn --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: yarn-v2-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+  setup-db:
+    description: "Setup postgres and prisma"
+    steps:
+      - run: yarn db:setup
+      - run: yarn db:migrate:force
+  build-packages:
+    description: "Build Packages"
+    steps:
+      - run: yarn build:all
+jobs:
+  lint_all:
+    docker:
+      - image: circleci/node:14.15.5
+        environment:
+          DATABASE_URL: postgresql://root@localhost/polaris_test
+      - image: circleci/postgres:9.6.2-alpine
+    steps:
+      - checkout
+      - install-packages
+      - build-packages
+      - setup-db
+      - run:
+          name: Lint all packages
+          command: "yarn lint:errors && yarn lint:types"
+  build_test_libs:
+    docker:
+      - image: circleci/node:14.15.5
+        environment:
+          DATABASE_URL: postgresql://root@localhost/polaris_test
+      - image: circleci/postgres:9.6.2-alpine
+    steps:
+      - checkout
+      - install-packages
+      - setup-db
+      - run:
+          name: Build and Test Polaris Domain
+          command: |
+            ls && cd packages/domain
+            yarn build && yarn test:ci
+      - coveralls/upload:
+          flag_name: "polaris-domain"
+          path_to_lcov: "packages/domain/coverage/lcov.info"
+          parallel: true
+          verbose: true
+  build_test_api:
+    docker:
+      - image: circleci/node:14.15.5
+        environment:
+          DATABASE_URL: postgresql://root@localhost/polaris_test
+          TEST_DATABASE_URL: postgresql://root@localhost/polaris_test
+          KEYCLOAK_TEST_USER: testuser
+          KEYCLOAK_TEST_PASSWORD: test101
+          KEYCLOAK_REALM: polaris
+          KEYCLOAK_CLIENT_ID: polaris-api
+          KEYCLOAK_CLIENT_SECRET: f7f1ab23-04b0-4154-9d88-09948b7641dc
+          KEYCLOAK_AUTH_SERVER_URL: http://34.245.0.36/auth
+      - image: circleci/postgres:9.6.2-alpine
+    steps:
+      - checkout
+      - install-packages
+      - build-packages
+      - setup-db
+      - run:
+          name: Build and Test Polaris Api
+          command: "yarn api:build && yarn api:test:ci"
+      - coveralls/upload:
+          flag_name: "polaris-api"
+          path_to_lcov: "packages/polaris-api/coverage/lcov.info"
+          parallel: true
+          verbose: true
+  build_test_angular:
+    docker:
+      - image: circleci/node:14.15.5-stretch-browsers
+    steps:
+      - checkout
+      - install-packages
+      - run:
+          name: Build and Test Polaris Angular
+          command: "yarn angular:build && yarn angular:test:ci"
+      - coveralls/upload:
+          flag_name: "polaris-angular"
+          path_to_lcov: "packages/polaris-angular/coverage/polaris-angular/lcov.info"
+          parallel: true
+          verbose: true
+  deploy_staging:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+        environment:
+          IMAGE_NAME: rayman0/polaris
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.2
+      - run:
+          name: Build Docker image
+          command: docker build -t $IMAGE_NAME:latest .
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push $IMAGE_NAME:latest
+  done:
+    docker:
+      - image: "circleci/node:14.15.5"
+    steps:
+      - coveralls/upload:
+          parallel_finished: true
+
+workflows:
+  build:
+    jobs:
+      - lint_all
+      - build_test_libs
+      - build_test_api
+      - build_test_angular
+      - deploy_staging:
+          requires:
+            - lint_all
+            - build_test_libs
+            - build_test_api
+            - build_test_angular
+          filters:
+            branches:
+              only:
+                - main
+      - done:
+          requires:
+            - build_test_libs
+            - build_test_api
+            - build_test_angular
+          filters:
+            branches:
+              ignore:
+                - production
+                - staging

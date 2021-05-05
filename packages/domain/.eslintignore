@@ -1,0 +1,7 @@
+**/__snapshots__/
+**/build/
+**/coverage/
+**/lib/
+**/node_modules/
+jest.config.js
+*.d.ts

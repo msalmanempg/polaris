@@ -1,0 +1,67 @@
+<mat-card-content class="form-container" [formGroup]="company">
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" required />
+    </mat-form-field>
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>NTN</mat-label>
+            <input matInput type="text" formControlName="ntn" required />
+        </mat-form-field>
+
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Registration Number</mat-label>
+            <input matInput type="text" formControlName="registrationNumber" required />
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="address" required />
+    </mat-form-field>
+
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" required>
+                <mat-option *ngFor="let country of countries" [value]="country.name"
+                    (onSelectionChange)="onCountryChange($event, country)">
+                    {{ country.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Province</mat-label>
+            <mat-select formControlName="province" required>
+                <mat-option *ngFor="let state of states" [value]="state.name"
+                    (onSelectionChange)="onStateChange($event, state)">
+                    {{ state.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" required>
+                <mat-option *ngFor="let city of cities" [value]="city.name">
+                    {{ city.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="text" formControlName="email" required />
+        </mat-form-field>
+        <app-multicell-input class="form-field-group" [phoneLabel]="'Contact Number'" formControlName="contactNumber"
+            name="contactNumber">
+        </app-multicell-input>
+    </div>
+
+</mat-card-content>

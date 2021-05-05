@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  # polaris-db:
+  #   image: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_MULTIPLE_DATABASES
+  #     - POSTGRES_USER
+  #     - POSTGRES_PASSWORD
+  #   volumes:
+  #     - ./packages/scripts:/docker-entrypoint-initdb.d:z
+  #     - db_volume:/var/lib/postgresql/data
+
+  keycloak:
+    image: jboss/keycloak:latest
+    environment:
+      - DB_VENDOR
+      - DB_ADDR
+      - DB_DATABASE
+      - DB_USER
+      - DB_SCHEMA
+      - DB_PASSWORD
+      - KEYCLOAK_USER
+      - KEYCLOAK_PASSWORD
+    ports:
+      - 8080:8080
+    volumes:
+      - cloak_volume:/opt/jboss
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        - DATABASE_URL=${DATABASE_URL}
+        - HOST=0.0.0.0
+        - PORT=${PORT}
+        - APP_SECRET=${APP_SECRET}
+        - APP_ENABLE_COMPRESSION=${APP_ENABLE_COMPRESSION}
+        - APP_ENVIRONMENT=${APP_ENVIRONMENT}
+        - KEYCLOAK_REALM=${KEYCLOAK_REALM}
+        - KEYCLOAK_CLIENT_ID=${KEYCLOAK_CLIENT_ID}
+        - KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET}
+        - KEYCLOAK_AUTH_SERVER_URL=${KEYCLOAK_AUTH_SERVER_URL}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - keycloak
+    links:
+      - keycloak
+
+volumes:
+  db_volume: {}
+  cloak_volume: {}

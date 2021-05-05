@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input matInput type="text" [(ngModel)]="value" (click)="uploadFile.click()" readonly >
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="onCancelClick()" >
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+<input #uploadFile type="file" (change)="onFileChange($event)" [accept]="allowedTypes" class="hide" />

@@ -1,0 +1,84 @@
+<div class="table-container">
+  <mat-table [dataSource]="rows" matSort matSortStart="desc" appearance="outline">
+    <ng-container [matColumnDef]="column.key" *ngFor="let column of columns; let i = index">
+      <span class="select-column" *ngIf="i === 0 && selectable">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </span>
+
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [ngClass]="{
+          'align-left': column.align === 'left',
+          'align-right': column.align === 'right',
+          'align-center': column.align === 'center'
+        }"
+      >
+        {{ column.value }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let row"
+        [ngClass]="{
+          'align-left': column.align === 'left',
+          'align-right': column.align === 'right',
+          'align-center': column.align === 'center'
+        }"
+      >
+        <span [ngSwitch]="column.columnType">
+          <span *ngSwitchCase="1">
+            <span *ngFor="let actionColumn of column.actions">
+              <div *ngIf="actionColumn.icon; then showIcon; else showRowCell">here is ignored</div>
+              <ng-template #showIcon>
+                <button mat-button (click)="actionColumn.onClick(row)">
+                  <mat-icon class="mat-18">{{ actionColumn.icon }}</mat-icon>
+                </button>
+              </ng-template>
+              <ng-template #showRowCell>
+                <a class="table-link-actions" (click)="actionColumn.onClick(row)">
+                  {{ row[column.key] }}
+                </a>
+              </ng-template>
+            </span>
+          </span>
+          <span *ngSwitchCase="2">
+            <a class="table-link-actions" [routerLink]="[column.getUrl(row)]">
+              {{ row[column.key] }}
+            </a>
+          </span>
+          <span *ngSwitchDefault>
+            {{ column.pipe ? (row[column.key] | date: column.pipe) : row[column.key] }}</span
+          >
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getColumnKeys"></tr>
+    <tr mat-row *matRowDef="let row; columns: getColumnKeys"></tr>
+  </mat-table>
+</div>
+
+<app-datatable-pager
+  [length]="length"
+  [pageSize]="limit"
+  (pageChange)="pageChange.emit($event)"
+  (limitChange)="limitChange.emit($event)"
+>
+</app-datatable-pager>

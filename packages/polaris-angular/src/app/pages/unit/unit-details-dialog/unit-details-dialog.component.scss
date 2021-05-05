@@ -1,0 +1,23 @@
+@import "../../../../assets/variables.scss";
+
+section {
+  display: flex;
+  flex-direction: column;
+  color: map-get($main-colors, gray-secondary-text-color);
+
+  .field {
+    font-weight: 500;
+  }
+
+  .action-section {
+    align-self: flex-end;
+    margin-top: 2rem;
+    button {
+      margin-right: 1rem;
+    }
+  }
+
+  .text {
+    color: $blue-text;
+  }
+}

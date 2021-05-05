@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2017", "dom"],
+    "target": "es2017",
+    "types": ["node", "express", "jest", "supertest", "winston"],
+    "strict": true,
+    "baseUrl": ".",
+    "noEmit": true,
+    "paths": {
+      "polaris-api/*": ["./src/*"]
+    },
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
+  },
+  "include": ["src/**/*", "tests/**/*", "types/*"]
+}

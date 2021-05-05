@@ -1,0 +1,148 @@
+<mat-grid-list cols="6" rowHeight="80px" [formGroup]="customerForm">
+    <mat-grid-tile [colspan]="2" [rowspan]="12">
+        <div class="info-container info-margin-bottom">
+            <h2>
+                Customer Details
+            </h2>
+            <h3 class="sub-title">
+                Add Customer details. This information will be used for formal documentation and communication.
+            </h3>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="14">
+        <app-customer [customerDetailForm]="customerForm" (customerTypeChange)="onCustomerTypeChange($event)">
+        </app-customer>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div class="id-info-section">
+            <span>
+                Identity Cards:            
+            </span>
+            <span>
+                Supported Formats: JPEG, JPG, PNG          
+            </span>
+            <span>
+                File Size: Max: 5 MB  
+            </span>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="6" [rowspan]="1">
+        <mat-divider></mat-divider>
+    </mat-grid-tile>
+
+    <div *ngIf="!individualCustomerType">
+        <mat-grid-tile [colspan]="2" [rowspan]="6">
+            <div class="info-container info-margin-bottom">
+                <h2>
+                    Company Details
+                </h2>
+                <h3 class="sub-title">
+                    Please fill in the Company details including contact details for the Company. We will use this
+                    information in formal documentation and communication. </h3>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="6">
+            <app-company [company]="companyForm"></app-company>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="6" [rowspan]="1">
+            <mat-divider></mat-divider>
+        </mat-grid-tile>
+    </div>
+
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <div class="info-container">
+            <h2>
+                Joint Customer Details
+            </h2>
+            <h3 class="sub-title">
+                Add details for a Joint Customer
+            </h3>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <mat-checkbox class="margin-right" (change)="showJointCustomerForm($event.checked)">
+            Joint Customer
+        </mat-checkbox>
+    </mat-grid-tile>
+    <div formArrayName="jointCustomers" *ngIf="joinCustomerForms.controls.length">
+        <div *ngFor="let joinCustomer of joinCustomerForms.controls; let i = index">
+            <mat-grid-tile [colspan]="2" [rowspan]="11">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="4" [rowspan]="13">
+                <app-customer [customerDetailForm]="getJoinCustomerFormGroupAt(i)" [isJointCustomerForm]="true">
+                </app-customer>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="2">
+                <div class="id-info-section">
+                    <span>
+                        Identity Cards:            
+                    </span>
+                    <span>
+                        Supported Formats: JPEG, JPG, PNG          
+                    </span>
+                    <span>
+                        File Size: Max: 5 MB  
+                    </span>
+                </div>
+            </mat-grid-tile>
+        </div>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+            <button mat-mini-fab (click)="addJoinCustomer()" *ngIf="joinCustomerForms.controls.length"
+                class="add-button">
+                <mat-icon>add</mat-icon>
+            </button>
+            <label *ngIf="joinCustomerForms.controls.length" class="add-label">Add another Joint Customer</label>
+        </mat-grid-tile>
+    </div>
+
+    <mat-grid-tile [colspan]="6" [rowspan]="1">
+        <mat-divider></mat-divider>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="4">
+        <div class="info-container info-margin-bottom">
+            <h2>
+                Nominee Details
+            </h2>
+            <h3 class="sub-title">
+                Add Nominee Details
+            </h3>
+        </div>
+    </mat-grid-tile>
+    <div formArrayName="nominees">
+        <div *ngFor="let nominee of nomineeForms.controls; let i = index">
+            <mat-grid-tile [colspan]="2" [rowspan]="4" *ngIf="i > 0">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="4" [rowspan]="6">
+                <app-nominee [nominee]="getNomineeFormGroupAt(i)"></app-nominee>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="2">
+                <div class="id-info-section">
+                    <span>
+                        Identity Cards:            
+                    </span>
+                    <span>
+                        Supported Formats: JPEG, JPG, PNG          
+                    </span>
+                    <span>
+                        File Size: Max: 5 MB  
+                    </span>
+                </div>
+            </mat-grid-tile>
+        </div>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+            <button mat-mini-fab (click)="addNominee()" *ngIf="nomineeForms.controls.length" class="add-button">
+                <mat-icon>add</mat-icon>
+            </button>
+            <label *ngIf="nomineeForms.controls.length" class="add-label">Add another Nominee</label>
+        </mat-grid-tile>
+    </div>
+
+
+</mat-grid-list>

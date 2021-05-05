@@ -1,0 +1,11 @@
+<mat-toolbar class="mat-elevation-z6">
+   <h1>POLARIS</h1>
+   <div class=logout>
+   <button mat-button [matMenuTriggerFor]="menu"  [attr.data-letters] ="userName[0]">
+     {{ userName }}
+   </button>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logOut()">Logout</button>
+    </mat-menu>
+   </div>
+  </mat-toolbar>

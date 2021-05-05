@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2017", "dom"],
+    "target": "es2017",
+    "types": ["node"],
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "prisma/*": ["."]
+    },
+    "outDir": "./lib/",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
+  },
+}

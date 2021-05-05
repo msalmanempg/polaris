@@ -1,0 +1,40 @@
+<form [formGroup]="agreementForm">
+    <div class="header-container">
+        <div class="header">
+            <h1 class="title">Add Agreement</h1>
+            <app-status-badge [type]="agreementFormDetails.statusType"
+                [text]="agreementFormDetails.status"></app-status-badge>
+        </div>
+
+    <div class="header-buttons">
+      <button mat-raised-button class="action-button" (click)="onCancel()"> CANCEL </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="action-button"
+        (click)="submitAgreementForm()"
+        type="submit"
+        [disabled]="!agreementForm.valid"
+      >
+        SAVE
+      </button>
+    </div>
+  </div>
+
+    <div class="form-section">
+        <mat-horizontal-stepper  (selectionChange)="onStepperChange($event)" #stepper >
+            <mat-step formGroupName="agreementDetail" >
+                <ng-template matStepLabel  >Agreement Details</ng-template>
+                <app-agreement-detail-form (agreementDetailformSet)="onAgreementDetailFormSet($event)"></app-agreement-detail-form>
+            </mat-step>
+            <mat-step formGroupName="customerDetail">
+                <ng-template matStepLabel>Customer Details</ng-template>
+                <app-customer-detail-form (customerDetailformSet)="onCustomerDetailFormSet($event)"></app-customer-detail-form>
+            </mat-step>
+            <mat-step formGroupName="paymentPlanDetail">
+                <ng-template matStepLabel>Payment Plan</ng-template>
+                <app-payment-plan-detail-form (paymentPlanDetailformSet)="onPaymentPlanDetailFormSet($event)"></app-payment-plan-detail-form>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</form>

@@ -1,0 +1,355 @@
+//******** AUTO GENERATED FILE, DO NOT EDIT.  *********
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator dbml {
+    provider = "prisma-dbml-generator"
+}
+
+
+model Agreement {
+  id                   Int                 @id @default(autoincrement())
+  leadId               Int                 @map("lead_id")
+  agreementNumber      String              @unique @map("agreement_number")
+  publishedPrice       Int                 @map("published_price")
+  bookingPrice         Int                 @map("booking_price")
+  discountValue        Int?                @map("discount_value")
+  posessionValue       Int                 @map("posession_value")
+  payments             ExpectedPayment[]
+  customers            AgreementCustomer[]
+  salesPerson          SalePerson[]
+  nominees             Nominee[]
+  Unit                 Unit                @relation(fields: [unitId], references: [id])
+  unitId               Int                 @map("unit_id")
+  status               agreementStatus
+  bookingDate          DateTime            @map("booking_date")
+  notarisedDate        DateTime            @map("notarised_date")
+  agreementDate        DateTime            @map("agreement_date")
+  installmentStartDate DateTime            @map("installment_start_date")
+  installmentEndDate   DateTime            @map("installment_end_date")
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+
+  @@map("agreements")
+}
+
+model DraftAgreement {
+  id              Int      @id @default(autoincrement())
+  Unit            Unit     @relation(fields: [unitId], references: [id])
+  unitId          Int      @map("unit_id")
+  agreementNumber String   @unique @map("agreement_number")
+  data            Json     @map("data")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("draft_agreements")
+}
+
+model SalePerson {
+  id          Int       @id @default(autoincrement())
+  designation String
+  fullName    String    @map("full_name")
+  email       String
+  govtId      String    @map("govt_id")
+  phoneNumber String    @map("phone_number")
+  sortLevel   Int       @map("sort_level")
+  Agreement   Agreement @relation(fields: [agreementId], references: [id])
+  agreementId Int       @map("agreement_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("sale_persons")
+}
+
+model AgreementCustomer {
+  id                   Int                @id @default(autoincrement())
+  type                 customerType       @map("customer_type")
+  Customer             Customer           @relation(fields: [customerId], references: [id])
+  customerId           Int                @map("customer_id")
+  Agreement            Agreement          @relation(fields: [agreementId], references: [id])
+  agreementId          Int                @map("agreement_id")
+  isPrimary            Boolean            @default(true)
+  meta                 Json?
+  email                String
+  primaryPhoneNumber   String             @map("primary_phone_number")
+  secondaryPhoneNumber String?            @map("secondary_phone_number")
+  address              String
+  Companies            AgreementCompany[]
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+
+  @@map("agreement_customers")
+}
+
+model AgreementCompany {
+  id                  Int               @id @default(autoincrement())
+  AgreementCustomer   AgreementCustomer @relation(fields: [agreementCustomerId], references: [id])
+  agreementCustomerId Int               @map("agreement_customer_id")
+  name                String
+  ntn                 String
+  registrationNumber  String            @unique @map("registration_number")
+  address             String
+  city                String
+  email               String
+  contactNumber       String            @map("contact_number")
+  meta                Json?
+  createdAt           DateTime          @default(now()) @map("created_at")
+  updatedAt           DateTime          @updatedAt @map("updated_at")
+
+  @@map("agreement_companies")
+}
+
+model Nominee {
+  id            Int        @id @default(autoincrement())
+  govtId        String     @map("govt_id")
+  govtIdType    govtIdType @map("govt_id_card")
+  nomineeFor    String     @map("nominee_for")
+  fullName      String     @map("full_name")
+  contactNumber String     @map("contact_number")
+  email         String
+  relationship  String
+  Agreement     Agreement  @relation(fields: [agreementId], references: [id])
+  agreementId   Int        @map("agreement_id")
+  meta          Json?
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  @@map("nominees")
+}
+
+model AgreementAttachment {
+  id           Int                   @id @default(autoincrement())
+  agreementId  Int                   @map("agreement_id")
+  Attachment   Attachment            @relation(fields: [attachmentId], references: [id])
+  attachmentId Int
+  type         agreementDocumentType
+  createdAt    DateTime              @default(now()) @map("created_at")
+  updatedAt    DateTime              @updatedAt @map("updated_at")
+
+  @@map("agreement_attachments")
+}
+
+model NomineeAttachment {
+  id           Int                   @id @default(autoincrement())
+  nomineeId    Int                   @map("nominee_id")
+  Attachment   Attachment            @relation(fields: [attachmentId], references: [id])
+  attachmentId Int
+  type         nomineeAttachmentType
+  createdAt    DateTime              @default(now()) @map("created_at")
+  updatedAt    DateTime              @updatedAt @map("updated_at")
+
+  @@map("nominee_attachment")
+}
+
+enum govtIdType {
+  cnic
+  nicop
+  poc
+}
+
+enum customerType {
+  individual
+  company
+}
+
+enum agreementStatus {
+  draft
+  review
+  active
+  transferred
+  terminated
+}
+
+enum agreementDocumentType {
+  agreement
+  booking_form
+  payment_plan
+  floor_plan
+  other
+}
+
+enum nomineeAttachmentType {
+  id_front
+  id_back
+  profile_picture
+  other
+}
+
+
+model Attachment {
+  id                   Int                   @id @default(autoincrement())
+  name                 String
+  key                  String
+  customerAttachments  CustomerAttachment[]
+  nomineeAttachments   NomineeAttachment[]
+  agreementAttachments AgreementAttachment[]
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @updatedAt @map("updated_at")
+
+  @@map("attachments")
+}
+
+
+model Customer {
+    id             Int                  @id @default(autoincrement())
+    fullName       String               @map("full_name")
+    govtId         String               @map("govt_id")
+    govtIdType     govtIdType           @map("govt_id_type")
+    relationType   relationType         @map("relation_type")
+    guardianName   String               @map("guardian_name")
+    nationality    String
+    passportNumber String?              @map("passport_number")
+    dateOfBirth    DateTime             @map("date_of_birth")
+    gender         Gender
+    meta           Json?
+    attachments    CustomerAttachment[]
+    agreements     AgreementCustomer[]
+    createdAt      DateTime             @default(now()) @map("created_at")
+    updatedAt      DateTime             @updatedAt @map("updated_at")
+
+    @@unique([govtId, govtIdType], name: "Customer_govtId_govtIdType_unique_constraint")
+    @@map(name: "customers")
+}
+
+model CustomerAttachment {
+    id           Int        @id @default(autoincrement())
+    Attachment   Attachment @relation(fields: [attachmentId], references: [id])
+    attachmentId Int
+    Customer     Customer   @relation(fields: [customerId], references: [id])
+    customerId   Int
+    createdAt    DateTime   @default(now()) @map("created_at")
+    updatedAt    DateTime   @updatedAt @map("updated_at")
+
+    @@map("customer_attachments")
+}
+
+enum relationType {
+    father
+    husband
+}
+
+enum Gender {
+    male
+    female
+}
+
+enum customerDocumentType {
+    id_front
+    id_back
+    profile_picture
+    other
+}
+
+
+model ExpectedPayment {
+  id          Int                   @id @default(autoincrement())
+  amount      Int
+  percentage  Int?
+  paymentDate DateTime              @map("payment_date")
+  type        expectedPaymentType
+  Agreement   Agreement             @relation(fields: [agreementId], references: [id])
+  agreementId Int                   @map("agreement_id")
+  meta        Json?
+  dueDate     DateTime              @map("due_date")
+  status      expectedPaymentStatus
+  createdAt   DateTime              @default(now()) @map("created_at")
+  updatedAt   DateTime              @updatedAt @map("updated_at")
+
+  @@map("expected_payments")
+}
+
+enum expectedPaymentType {
+  down_payment
+  installment
+  advance
+  posession
+}
+
+enum expectedPaymentStatus {
+  paid
+  pending
+}
+
+
+model Project {
+  id             Int                 @id @default(autoincrement())
+  name           String
+  address        String
+  city           String
+  province       String
+  country        String
+  longitude      Float
+  latitude       Float
+  email          String
+  phone          String
+  url            String
+  completionDate DateTime?           @map("completion_date")
+  logo           String
+  meta           Json?
+  bankDetails    ProjectBankDetail[]
+  units          Unit[]
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model ProjectBankDetail {
+  id            Int      @id @default(autoincrement())
+  bankName      String   @map("bank_name")
+  accountTitle  String   @map("account_title")
+  accountNumber String   @map("account_number")
+  iban          String
+  swiftCode     String   @map("swift_code")
+  branchAddress String   @map("branch_address")
+  branchCode    String   @map("branch_code")
+  meta          Json?
+  Project       Project? @relation(fields: [projectId], references: [id])
+  projectId     Int?
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("project_bank_details")
+}
+
+
+model Unit {
+  id             Int              @id @default(autoincrement())
+  unitNumber     String           @unique @map("unit_number")
+  location       String
+  type           unitType
+  bed            Int
+  basePrice      Int              @map("base_price")
+  publishedPrice Int              @map("published_price")
+  netArea        Int              @map("net_area")
+  grossArea      Int              @map("gross_area")
+  meta           Json?
+  status         unitStatus
+  Project        Project          @relation(fields: [projectId], references: [id])
+  projectId      Int              @map("project_id")
+  agreements     Agreement[]
+  drafts         DraftAgreement[]
+  completionDate DateTime?        @map("completion_date")
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
+
+  @@map(name: "units")
+}
+
+enum unitType {
+  residential
+  commercial
+}
+
+enum unitStatus {
+  booked
+  sold
+  available
+}

@@ -1,0 +1,67 @@
+<section>
+  <div class="header">
+    <h1 class="section-label">Agreements</h1>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="action-button"
+      (click)="onClickAddAgreementButton()"
+    >
+      <mat-icon>add</mat-icon>ADD AGREEMENT
+    </button>
+  </div>
+
+  <div class="filters">
+    <div class="filter">
+      <app-select-project
+        [includeAllOption]="true"
+        [(ngModel)]="selectedProjectId"
+        (ngModelChange)="onFilterChange()"
+      ></app-select-project>
+    </div>
+
+    <div class="filter">
+      <app-select-project-unit
+        [includeAllOption]="true"
+        [(ngModel)]="selectedUnitId"
+        [projectId]="selectedProjectId"
+        (ngModelChange)="onFilterChange()"
+      >
+      </app-select-project-unit>
+    </div>
+
+    <div class="filter">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Customer Government ID</mat-label>
+        <input matInput type="text" [(ngModel)]="customerGovtId" (keyup.enter)="onFilterChange()" />
+      </mat-form-field>
+    </div>
+
+    <div class="filter">
+      <app-dropdown [searchable]="false" [label]="'Notices'"></app-dropdown>
+    </div>
+  </div>
+</section>
+
+<div class="data-section">
+  <mat-tab-group
+    animationDuration="0ms"
+    [selectedIndex]="selectedstatusTabIndex"
+    (selectedTabChange)="onClickStatusTab($event)"
+  >
+    <mat-tab
+      label="{{ statusTab.name }} ({{ statusTab.count }})"
+      *ngFor="let statusTab of statusTabs"
+    ></mat-tab>
+  </mat-tab-group>
+
+  <app-agreements-datatable
+    [agreements]="agreements"
+    [count]="count"
+    [pageSize]="pageSize"
+    (pageOffsetChange)="onPageOffsetChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)"
+  >
+  </app-agreements-datatable>
+</div>

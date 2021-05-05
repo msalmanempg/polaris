@@ -1,0 +1,68 @@
+<div *ngIf="isImportCompleted">
+  <app-units-import-success [errorInfo]="errorInfo"
+  [rowsCreated] = "rowsCreated"
+  [rowsUpdated] = "rowsUpdated"
+  [rowsRejected] = "rowsRejected"
+  [alternateErrorMessage] = "errorMessage"
+  (closeClicked)="closeDialog()"
+  >
+  </app-units-import-success>
+</div>
+
+<div *ngIf="!isImportCompleted">
+  <div class="title-section">
+    <span class="header"> Import / Update - Units </span>
+  </div>
+  <div class="filters-section">
+    <div>
+      <mat-label>Please select a project to add/update inventory.</mat-label>
+      <div class="filter-wrapper">
+        <app-select-project [(ngModel)]="selectedProjectId"></app-select-project>
+      </div>
+    </div>
+
+    <div class="inventory-section">
+      <mat-label>Please download all the inventory for selected project.</mat-label>
+      <button
+        mat-stroked-button
+        class="inventory-button text"
+        (click)="downloadInventory()"
+        [disabled]="!selectedProjectId"
+      >
+        <mat-icon>cloud_download</mat-icon> DOWNLOAD INVENTORY
+      </button>
+      <div class="filename text" >
+        <a (click)="downloadInventory()">sample_file_format.xlsx</a>
+        <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+      </div>
+    </div>
+
+    <div class="inventory-section">
+      <h1 class="sub-title">UPLOAD INVENTORY</h1>
+      <mat-label
+        >Please edit the downloaded file and upload. Existing units with ID will be updated and
+        units without ID will be treated as new inventory.</mat-label
+      >
+      <button mat-stroked-button class="inventory-button text" (click)="uploadFile.click()">
+        <mat-icon>cloud_upload</mat-icon> UPLOAD INVENTORY
+      </button>
+      <input
+        #uploadFile
+        type="file"
+        class="hide"
+        (change)="onUpload($event)"
+        [accept]="allowedTypes"
+      />
+      <div class="filename text" *ngIf="importedInventoryFile?.name">
+        <span [title]="importedInventoryFile?.name">{{ importedInventoryFile?.name }}</span>
+      </div>
+    </div>
+
+    <div class="action-section">
+      <button mat-flat-button class="text" (click)="onSaveUnits()" [disabled]="isUploadDisabled"
+        >UPLOAD</button
+      >
+      <button mat-flat-button class="text" (click)="dialogRef.close(false)">CANCEL</button>
+    </div>
+  </div>
+</div>

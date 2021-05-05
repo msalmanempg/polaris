@@ -1,0 +1,105 @@
+@import "../../../../assets/variables.scss";
+.add-project {
+  padding: 15px 12px;
+  margin-bottom: 5rem;
+
+  .title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      text-align: left;
+      font-family: Georgia;
+      font-size: 32px;
+      font-weight: normal;
+    }
+
+    .action-button {
+      text-transform: uppercase;
+      min-width: 6rem;
+      line-height: 2rem;
+      letter-spacing: 0.15rem;
+    }
+  }
+
+  .project-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    align-items: left;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+
+    mat-divider {
+      width: 100%;
+      position: inherit;
+      margin-bottom: 3rem;
+      margin-top: 1rem;
+      border-top-width: 2px;
+    }
+    .bank-detail-container {
+      width: 100%;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+
+      .form-field {
+        width: 50rem;
+      }
+
+      .group-form-field-container {
+        display: flex;
+        flex-direction: row;
+
+        .form-field-group {
+          width: 24rem;
+          margin-right: 2rem;
+        }
+
+        .main-image {
+          height: 112px;
+          width: 112px;
+          margin: 0.5rem;
+        }
+
+        .hide {
+          display: none;
+        }
+      }
+    }
+    .info-container {
+      font-weight: 500;
+      font-size: 22px;
+      width: 30%;
+    }
+    .sub-text {
+      text-align: left;
+      font-family: Arial;
+      font-style: italic;
+      color: #b7b7b7;
+      opacity: 1;
+      margin-inline-end: 1.5rem;
+      font-size: 1rem;
+    }
+    .image-text {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+    }
+
+    .error {
+      color: $validation-error-color;
+    }
+  }
+
+  .form-action {
+    display: flex;
+    column-gap: 1rem;
+    justify-content: flex-end;
+    .form-control {
+      width: 7.25rem;
+    }
+  }
+}

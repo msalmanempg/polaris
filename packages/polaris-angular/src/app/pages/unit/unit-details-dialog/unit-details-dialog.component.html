@@ -1,0 +1,19 @@
+<section>
+  <h1 class="section-label">Unit Details</h1>
+
+  <table mat-table [dataSource]="unit" class="mat-elevation-z0">
+    <ng-container matColumnDef="field">
+      <td mat-cell *matCellDef="let element" class="field"> {{ element.field }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <td mat-cell *matCellDef="let element"> {{ element.value }} </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div class="action-section">
+    <button mat-flat-button class="text" (click)="closeDialog()">CLOSE</button>
+  </div>
+</section>

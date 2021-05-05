@@ -1,0 +1,43 @@
+<mat-card-content class="form-container" [formGroup]="nominee">
+    <div class="group-form-field-container">
+        <app-dropdown [options]="govtIdTypeOptions" formControlName="govtIdType" [label]="'Goverment Id Type'"
+            class="form-field-group" [required]="true" (selectedValueChange)="govtIdTypeChange($event)" > </app-dropdown>
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>CNIC / NICOP Number</mat-label>
+            <input matInput type="text" [mask]="cnicMask" formControlName="govtId" [placeholder]="cnicMask" [dropSpecialCharacters]="false" required />
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input matInput type="text" formControlName="fullName" required />
+    </mat-form-field>
+    <div class="group-form-field-container">
+        <app-multicell-input class="form-field-group" [phoneLabel]="'Contact Number'" formControlName="contactNumber"
+            name="contactNumber">
+        </app-multicell-input>
+
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="text" formControlName="email" required />
+        </mat-form-field>
+    </div>
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Nominee For</mat-label>
+            <input matInput type="text" formControlName="nomineeFor" required />
+        </mat-form-field>
+
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Relationship</mat-label>
+            <input matInput type="text" formControlName="relationship" required />
+        </mat-form-field>
+    </div>
+
+    <div class="group-form-field-container">
+        <app-file-upload [label]="'GOVT.ID FRONT'" [allowedTypes]="allowedTypes"
+            (uploadFile)="onFileUpload($event, 'ID_FRONT')" (cancelFile)="onCancelFile('ID_FRONT')"></app-file-upload>
+        <app-file-upload [label]="'GOVT.ID BACK'" class="margin-left" [allowedTypes]="allowedTypes"
+            (uploadFile)="onFileUpload($event, 'ID_BACK')" (cancelFile)="onCancelFile('ID_FRONT')"></app-file-upload>
+    </div>
+</mat-card-content>

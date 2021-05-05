@@ -1,0 +1,40 @@
+model Project {
+  id             Int                 @id @default(autoincrement())
+  name           String
+  address        String
+  city           String
+  province       String
+  country        String
+  longitude      Float
+  latitude       Float
+  email          String
+  phone          String
+  url            String
+  completionDate DateTime?           @map("completion_date")
+  logo           String
+  meta           Json?
+  bankDetails    ProjectBankDetail[]
+  units          Unit[]
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model ProjectBankDetail {
+  id            Int      @id @default(autoincrement())
+  bankName      String   @map("bank_name")
+  accountTitle  String   @map("account_title")
+  accountNumber String   @map("account_number")
+  iban          String
+  swiftCode     String   @map("swift_code")
+  branchAddress String   @map("branch_address")
+  branchCode    String   @map("branch_code")
+  meta          Json?
+  Project       Project? @relation(fields: [projectId], references: [id])
+  projectId     Int?
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("project_bank_details")
+}

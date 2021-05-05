@@ -1,0 +1,20 @@
+<mat-card-content class="form-container" [formGroup]="salePersonForm">
+    <div class="group-form-field-container">
+        <app-dropdown [options]="designationOptions" [searchable]="false" formControlName="designation"
+            [label]="'Designation'" class="form-field-group" [required]="true"> </app-dropdown>
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input matInput type="text" formControlName="fullName" required />
+        </mat-form-field>
+    </div>
+
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field-group" appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" formControlName="email" required />
+        </mat-form-field>
+        <app-multicell-input class="form-field-group" [phoneLabel]="'Contact Number'" formControlName="contactNumber"
+            name="contactNumber"></app-multicell-input>
+    </div>
+
+</mat-card-content>

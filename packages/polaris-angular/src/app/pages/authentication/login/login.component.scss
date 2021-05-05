@@ -1,0 +1,56 @@
+@import "../../../../assets/variables.scss";
+.login-container {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .headings {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-bottom: 10%;
+    letter-spacing: 6.6px;
+  }
+  .copy-right-section {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    display: block;
+    padding: 10px;
+    margin-bottom: 2%;
+  }
+}
+
+.login-container .caption {
+  font-size: 30px;
+  margin-bottom: 5%;
+  text-align: left;
+  letter-spacing: 6.6px;
+  opacity: 1;
+}
+
+.login-container .login-form, mat-card-content {
+  min-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  mat-icon{
+    cursor: pointer;
+  }
+  .mat-form-field {
+    display: flex;
+    flex-direction: column;
+    width: 328px;
+  }
+  .warning-message {
+    color: $validation-error-color;
+    margin: 2px 4px;
+  }
+  .button-login {
+    height: 56px;
+    width: 328px;
+  }
+}

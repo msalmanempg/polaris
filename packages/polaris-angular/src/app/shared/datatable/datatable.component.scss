@@ -1,0 +1,36 @@
+@import "../../../assets/variables.scss";
+.table-container {
+  overflow: auto;
+  height: 600px;
+
+  th.mat-header-cell {
+    text-align: left;
+    background-color: map-get($main-colors, gray-primary-color);
+    color: $black;
+    font-size: 12px;
+    padding: 20px 20px 20px 20px;
+    width: 5%;
+  }
+  td.mat-cell {
+    padding: 10px 20px 10px 20px;
+    width: 5%;
+
+    .table-link-actions {
+      text-decoration: none;
+      color: $blue-text;
+      cursor: pointer;
+    }
+  }
+
+  .align-left {
+    text-align: left !important;
+  }
+
+  .align-center {
+    text-align: center !important;
+  }
+
+  .align-right {
+    text-align: right !important;
+  }
+}

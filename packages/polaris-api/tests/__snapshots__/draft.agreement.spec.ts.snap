@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`draftAgreements Should create a new agreement draft 1`] = `
+Object {
+  "agreementNumber": "ABC1236",
+  "createdAt": Any<String>,
+  "data": Object {},
+  "id": Any<Number>,
+  "unitId": Any<Number>,
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`draftAgreements Should get draft agreement details 1`] = `
+Object {
+  "agreementNumber": "ABC1234",
+  "createdAt": Any<String>,
+  "data": Object {},
+  "id": Any<Number>,
+  "unitId": Any<Number>,
+  "updatedAt": Any<String>,
+}
+`;

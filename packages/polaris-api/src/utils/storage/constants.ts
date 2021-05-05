@@ -1,0 +1,17 @@
+export const MimeTypesMapping: { [key: string]: string } = {
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  png: "image/png",
+  mp4: "video/mp4",
+  wav: "audio/x-wav",
+  txt: "text/plain",
+  doc: "application/msword",
+  xls: "application/vnd.ms-excel",
+  swf: "application/x-shockwave-flash",
+  pdf: "application/pdf",
+  xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  apk: "application/vnd.android.package-archive",
+  pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  csv: "text/csv",
+};

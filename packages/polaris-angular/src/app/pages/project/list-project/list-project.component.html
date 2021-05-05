@@ -1,0 +1,14 @@
+<section>
+  <div class="header">
+    <h1 class="section-label">Projects</h1>
+    <button mat-raised-button color="primary" class="action-button" (click)="onClickAddNewProject()">
+      <mat-icon>add</mat-icon>ADD PROJECT
+    </button>
+  </div>
+
+</section>
+<div class="data-section">
+  <app-datatable [rows]="projectRows" [columns]="dataColumns" [length]="totalCount" [limit]="pageSize"
+    (pageChange)="onPageChange($event)" (limitChange)="onLimitChange($event)">
+  </app-datatable>
+</div>

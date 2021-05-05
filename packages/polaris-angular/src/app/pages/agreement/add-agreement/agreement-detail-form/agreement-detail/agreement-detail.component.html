@@ -1,0 +1,14 @@
+<mat-card-content class="form-container" [formGroup]="agreementDetailForm">
+    <div class="group-form-field-container">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Agreement Number</mat-label>
+            <input matInput type="text" formControlName="agreementNumber" required/>
+        </mat-form-field>
+    </div>
+    <div class="group-form-field-container">
+        <app-select-project  [(ngModel)]="selectedProjectId" id="projectId" [ngModelOptions]="{standalone: true}"
+        class="form-field-group"  [required]="true"></app-select-project>
+        <app-select-project-unit  formControlName="unitId" [projectId]="selectedProjectId"  name="unitId"  class="form-field-group" [required] = "true" [status]="'available'">
+        </app-select-project-unit>
+    </div>
+</mat-card-content>

@@ -1,0 +1,6 @@
+
+@mixin alert-variant($background, $border, $text-color) {
+    color: $text-color;
+    background-color: $background;
+    height: auto;
+}

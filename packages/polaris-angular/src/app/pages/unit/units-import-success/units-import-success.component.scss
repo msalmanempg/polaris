@@ -1,0 +1,45 @@
+@import "../../../../assets/variables.scss";
+
+.title-section {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 440;
+    margin-bottom: 30px;
+    padding-top: 15px;
+    color: map-get($main-colors, gray-secondary-text-color);
+    display: flex;
+  }
+  
+
+.count-status{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    span {
+        margin-right: 30px;
+        font-weight: 500;
+    }
+}
+
+mat-list {
+    flex-grow: 2;
+    height: 300px;
+    overflow:hidden; 
+    overflow-y: scroll;
+    width: 100%;
+    mat-list-item {
+        border: 1px solid hsla(240, 2%, 90%, 0.6);
+        padding:0.5% 0rem;
+        color: #11141A99;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.25px;
+
+    }
+}
+
+.action-buttons {
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 10px;
+}

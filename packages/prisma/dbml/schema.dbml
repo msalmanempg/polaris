@@ -1,0 +1,339 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Agreement {
+  id Int [pk, increment]
+  leadId Int [not null]
+  agreementNumber String [unique, not null]
+  publishedPrice Int [not null]
+  bookingPrice Int [not null]
+  discountValue Int
+  posessionValue Int [not null]
+  payments ExpectedPayment [not null]
+  customers AgreementCustomer [not null]
+  salesPerson SalePerson [not null]
+  nominees Nominee [not null]
+  Unit Unit [not null]
+  unitId Int [not null]
+  status agreementStatus [not null]
+  bookingDate DateTime [not null]
+  notarisedDate DateTime [not null]
+  agreementDate DateTime [not null]
+  installmentStartDate DateTime [not null]
+  installmentEndDate DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table DraftAgreement {
+  id Int [pk, increment]
+  Unit Unit [not null]
+  unitId Int [not null]
+  agreementNumber String [unique, not null]
+  data Json [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table SalePerson {
+  id Int [pk, increment]
+  designation String [not null]
+  fullName String [not null]
+  email String [not null]
+  govtId String [not null]
+  phoneNumber String [not null]
+  sortLevel Int [not null]
+  Agreement Agreement [not null]
+  agreementId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AgreementCustomer {
+  id Int [pk, increment]
+  type customerType [not null]
+  Customer Customer [not null]
+  customerId Int [not null]
+  Agreement Agreement [not null]
+  agreementId Int [not null]
+  isPrimary Boolean [not null, default: true]
+  meta Json
+  email String [not null]
+  primaryPhoneNumber String [not null]
+  secondaryPhoneNumber String
+  address String [not null]
+  Companies AgreementCompany [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AgreementCompany {
+  id Int [pk, increment]
+  AgreementCustomer AgreementCustomer [not null]
+  agreementCustomerId Int [not null]
+  name String [not null]
+  ntn String [not null]
+  registrationNumber String [unique, not null]
+  address String [not null]
+  city String [not null]
+  email String [not null]
+  contactNumber String [not null]
+  meta Json
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Nominee {
+  id Int [pk, increment]
+  govtId String [not null]
+  govtIdType govtIdType [not null]
+  nomineeFor String [not null]
+  fullName String [not null]
+  contactNumber String [not null]
+  email String [not null]
+  relationship String [not null]
+  Agreement Agreement [not null]
+  agreementId Int [not null]
+  meta Json
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table AgreementAttachment {
+  id Int [pk, increment]
+  agreementId Int [not null]
+  Attachment Attachment [not null]
+  attachmentId Int [not null]
+  type agreementDocumentType [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table NomineeAttachment {
+  id Int [pk, increment]
+  nomineeId Int [not null]
+  Attachment Attachment [not null]
+  attachmentId Int [not null]
+  type nomineeAttachmentType [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Attachment {
+  id Int [pk, increment]
+  name String [not null]
+  key String [not null]
+  customerAttachments CustomerAttachment [not null]
+  nomineeAttachments NomineeAttachment [not null]
+  agreementAttachments AgreementAttachment [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Customer {
+  id Int [pk, increment]
+  fullName String [not null]
+  govtId String [not null]
+  govtIdType govtIdType [not null]
+  relationType relationType [not null]
+  guardianName String [not null]
+  nationality String [not null]
+  passportNumber String
+  dateOfBirth DateTime [not null]
+  gender Gender [not null]
+  meta Json
+  attachments CustomerAttachment [not null]
+  agreements AgreementCustomer [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (govtId, govtIdType) [unique]
+  }
+}
+
+Table CustomerAttachment {
+  id Int [pk, increment]
+  Attachment Attachment [not null]
+  attachmentId Int [not null]
+  Customer Customer [not null]
+  customerId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ExpectedPayment {
+  id Int [pk, increment]
+  amount Int [not null]
+  percentage Int
+  paymentDate DateTime [not null]
+  type expectedPaymentType [not null]
+  Agreement Agreement [not null]
+  agreementId Int [not null]
+  meta Json
+  dueDate DateTime [not null]
+  status expectedPaymentStatus [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Project {
+  id Int [pk, increment]
+  name String [not null]
+  address String [not null]
+  city String [not null]
+  province String [not null]
+  country String [not null]
+  longitude Float [not null]
+  latitude Float [not null]
+  email String [not null]
+  phone String [not null]
+  url String [not null]
+  completionDate DateTime
+  logo String [not null]
+  meta Json
+  bankDetails ProjectBankDetail [not null]
+  units Unit [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ProjectBankDetail {
+  id Int [pk, increment]
+  bankName String [not null]
+  accountTitle String [not null]
+  accountNumber String [not null]
+  iban String [not null]
+  swiftCode String [not null]
+  branchAddress String [not null]
+  branchCode String [not null]
+  meta Json
+  Project Project
+  projectId Int
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Unit {
+  id Int [pk, increment]
+  unitNumber String [unique, not null]
+  location String [not null]
+  type unitType [not null]
+  bed Int [not null]
+  basePrice Int [not null]
+  publishedPrice Int [not null]
+  netArea Int [not null]
+  grossArea Int [not null]
+  meta Json
+  status unitStatus [not null]
+  Project Project [not null]
+  projectId Int [not null]
+  agreements Agreement [not null]
+  drafts DraftAgreement [not null]
+  completionDate DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Enum govtIdType {
+  cnic
+  nicop
+  poc
+}
+
+Enum customerType {
+  individual
+  company
+}
+
+Enum agreementStatus {
+  draft
+  review
+  active
+  transferred
+  terminated
+}
+
+Enum agreementDocumentType {
+  agreement
+  booking_form
+  payment_plan
+  floor_plan
+  other
+}
+
+Enum nomineeAttachmentType {
+  id_front
+  id_back
+  profile_picture
+  other
+}
+
+Enum relationType {
+  father
+  husband
+}
+
+Enum Gender {
+  male
+  female
+}
+
+Enum customerDocumentType {
+  id_front
+  id_back
+  profile_picture
+  other
+}
+
+Enum expectedPaymentType {
+  down_payment
+  installment
+  advance
+  posession
+}
+
+Enum expectedPaymentStatus {
+  paid
+  pending
+}
+
+Enum unitType {
+  residential
+  commercial
+}
+
+Enum unitStatus {
+  booked
+  sold
+  available
+}
+
+Ref: Agreement.unitId > Unit.id
+
+Ref: DraftAgreement.unitId > Unit.id
+
+Ref: SalePerson.agreementId > Agreement.id
+
+Ref: AgreementCustomer.customerId > Customer.id
+
+Ref: AgreementCustomer.agreementId > Agreement.id
+
+Ref: AgreementCompany.agreementCustomerId > AgreementCustomer.id
+
+Ref: Nominee.agreementId > Agreement.id
+
+Ref: AgreementAttachment.attachmentId > Attachment.id
+
+Ref: NomineeAttachment.attachmentId > Attachment.id
+
+Ref: CustomerAttachment.attachmentId > Attachment.id
+
+Ref: CustomerAttachment.customerId > Customer.id
+
+Ref: ExpectedPayment.agreementId > Agreement.id
+
+Ref: ProjectBankDetail.projectId > Project.id
+
+Ref: Unit.projectId > Project.id

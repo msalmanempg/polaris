@@ -1,0 +1,52 @@
+<div class="project-form-container ">
+    <div class="info-container">
+        <h1> Bank Information</h1>
+        <h2 class="sub-text"> Define a way for customers to make payment. </h2>
+    </div>
+
+    <mat-card-content class="form-container" [formGroup]="bankDetailForm">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Bank Name</mat-label>
+            <input matInput type="text" formControlName="bankName" required />
+        </mat-form-field>
+
+        <div class="group-form-field-container">
+            <mat-form-field class="form-field-group" appearance="outline">
+                <mat-label>Account Title</mat-label>
+                <input matInput type="text" formControlName="accountTitle" required />
+            </mat-form-field>
+            <mat-form-field class="form-field-group" appearance="outline">
+                <mat-label>Account Number</mat-label>
+                <input matInput type="text" formControlName="accountNumber" minlength="10" maxlength="14"  required />
+                <mat-error >[10 - 14] digits allowed </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="group-form-field-container">
+            <mat-form-field class="form-field-group" appearance="outline">
+                <mat-label>IBAN</mat-label>
+                <input matInput type="text" formControlName="iban" minlength="24"  maxlength="24" required />
+                <mat-error >Alphanumeric 24 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-field-group" appearance="outline">
+                <mat-label>Swift Code</mat-label>
+                <input matInput type="text" formControlName="swiftCode" minlength="11" maxlength="11" required />
+                <mat-error>Alphanumeric 11 characters</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="group-form-field-container">
+            <mat-form-field class="form-field-group" appearance="outline">
+                <mat-label>Branch Address</mat-label>
+                <input matInput type="text" formControlName="branchAddress" required />
+            </mat-form-field>
+
+            <mat-form-field class="form-field-group" appearance="outline">
+                <mat-label>Branch Code</mat-label>
+                <input matInput type="text" formControlName="branchCode" maxlength="4" required />
+                <mat-error> 4 digits </mat-error>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+
+</div>

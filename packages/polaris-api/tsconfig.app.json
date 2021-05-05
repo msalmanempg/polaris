@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*", "types/*"],
+  "compilerOptions": {
+    "noEmit": false,
+    "baseUrl": "src/",
+    "outDir": "dist/",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "paths": {
+      "polaris-api/*": ["./*"]
+    }
+  }
+}

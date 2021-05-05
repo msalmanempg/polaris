@@ -1,0 +1,167 @@
+model Agreement {
+  id                   Int                 @id @default(autoincrement())
+  leadId               Int                 @map("lead_id")
+  agreementNumber      String              @unique @map("agreement_number")
+  publishedPrice       Int                 @map("published_price")
+  bookingPrice         Int                 @map("booking_price")
+  discountValue        Int?                @map("discount_value")
+  posessionValue       Int                 @map("posession_value")
+  payments             ExpectedPayment[]
+  customers            AgreementCustomer[]
+  salesPerson          SalePerson[]
+  nominees             Nominee[]
+  Unit                 Unit                @relation(fields: [unitId], references: [id])
+  unitId               Int                 @map("unit_id")
+  status               agreementStatus
+  bookingDate          DateTime            @map("booking_date")
+  notarisedDate        DateTime            @map("notarised_date")
+  agreementDate        DateTime            @map("agreement_date")
+  installmentStartDate DateTime            @map("installment_start_date")
+  installmentEndDate   DateTime            @map("installment_end_date")
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+
+  @@map("agreements")
+}
+
+model DraftAgreement {
+  id              Int      @id @default(autoincrement())
+  Unit            Unit     @relation(fields: [unitId], references: [id])
+  unitId          Int      @map("unit_id")
+  agreementNumber String   @unique @map("agreement_number")
+  data            Json     @map("data")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("draft_agreements")
+}
+
+model SalePerson {
+  id          Int       @id @default(autoincrement())
+  designation String
+  fullName    String    @map("full_name")
+  email       String
+  govtId      String    @map("govt_id")
+  phoneNumber String    @map("phone_number")
+  sortLevel   Int       @map("sort_level")
+  Agreement   Agreement @relation(fields: [agreementId], references: [id])
+  agreementId Int       @map("agreement_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("sale_persons")
+}
+
+model AgreementCustomer {
+  id                   Int                @id @default(autoincrement())
+  type                 customerType       @map("customer_type")
+  Customer             Customer           @relation(fields: [customerId], references: [id])
+  customerId           Int                @map("customer_id")
+  Agreement            Agreement          @relation(fields: [agreementId], references: [id])
+  agreementId          Int                @map("agreement_id")
+  isPrimary            Boolean            @default(true)
+  meta                 Json?
+  email                String
+  primaryPhoneNumber   String             @map("primary_phone_number")
+  secondaryPhoneNumber String?            @map("secondary_phone_number")
+  address              String
+  Companies            AgreementCompany[]
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+
+  @@map("agreement_customers")
+}
+
+model AgreementCompany {
+  id                  Int               @id @default(autoincrement())
+  AgreementCustomer   AgreementCustomer @relation(fields: [agreementCustomerId], references: [id])
+  agreementCustomerId Int               @map("agreement_customer_id")
+  name                String
+  ntn                 String
+  registrationNumber  String            @unique @map("registration_number")
+  address             String
+  city                String
+  email               String
+  contactNumber       String            @map("contact_number")
+  meta                Json?
+  createdAt           DateTime          @default(now()) @map("created_at")
+  updatedAt           DateTime          @updatedAt @map("updated_at")
+
+  @@map("agreement_companies")
+}
+
+model Nominee {
+  id            Int        @id @default(autoincrement())
+  govtId        String     @map("govt_id")
+  govtIdType    govtIdType @map("govt_id_card")
+  nomineeFor    String     @map("nominee_for")
+  fullName      String     @map("full_name")
+  contactNumber String     @map("contact_number")
+  email         String
+  relationship  String
+  Agreement     Agreement  @relation(fields: [agreementId], references: [id])
+  agreementId   Int        @map("agreement_id")
+  meta          Json?
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  @@map("nominees")
+}
+
+model AgreementAttachment {
+  id           Int                   @id @default(autoincrement())
+  agreementId  Int                   @map("agreement_id")
+  Attachment   Attachment            @relation(fields: [attachmentId], references: [id])
+  attachmentId Int
+  type         agreementDocumentType
+  createdAt    DateTime              @default(now()) @map("created_at")
+  updatedAt    DateTime              @updatedAt @map("updated_at")
+
+  @@map("agreement_attachments")
+}
+
+model NomineeAttachment {
+  id           Int                   @id @default(autoincrement())
+  nomineeId    Int                   @map("nominee_id")
+  Attachment   Attachment            @relation(fields: [attachmentId], references: [id])
+  attachmentId Int
+  type         nomineeAttachmentType
+  createdAt    DateTime              @default(now()) @map("created_at")
+  updatedAt    DateTime              @updatedAt @map("updated_at")
+
+  @@map("nominee_attachment")
+}
+
+enum govtIdType {
+  cnic
+  nicop
+  poc
+}
+
+enum customerType {
+  individual
+  company
+}
+
+enum agreementStatus {
+  draft
+  review
+  active
+  transferred
+  terminated
+}
+
+enum agreementDocumentType {
+  agreement
+  booking_form
+  payment_plan
+  floor_plan
+  other
+}
+
+enum nomineeAttachmentType {
+  id_front
+  id_back
+  profile_picture
+  other
+}

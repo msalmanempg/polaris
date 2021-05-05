@@ -1,0 +1,26 @@
+
+.container {
+    height: 100%;
+    display: flex;
+
+    .form-container {
+        width: 400px; 
+        margin: 0px auto; 
+        margin-top: 10px;
+
+        .action-button {
+            display: flex;
+            flex-direction: row;           
+            button {
+                 width: 200px;
+            }
+        }
+    }
+
+    .form-field{
+        display: block;
+        width: 400px;
+    }
+
+}
+  

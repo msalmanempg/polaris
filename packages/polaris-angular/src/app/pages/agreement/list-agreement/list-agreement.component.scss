@@ -1,0 +1,56 @@
+section {
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1rem;
+
+    .filter {
+      margin-right: 2rem;
+    }
+  }
+}
+
+.data-section {
+  margin-top: 1rem;
+}
+
+.section-label {
+  display: table-cell;
+  text-align: left;
+  font-family: Georgia;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.section-actions {
+  display: table-cell;
+}
+
+.section-filter-row {
+  margin-top: 5.5rem;
+}
+
+.section-filter {
+  display: table-cell;
+  margin-right: 1rem;
+}
+
+section {
+  //  display: flex;
+}
+
+.action-button {
+  text-transform: uppercase;
+  min-width: 10rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.18rem;
+  height: 2.65rem;
+  mat-icon {
+    margin: 0.2rem;
+  }
+}

@@ -1,0 +1,9 @@
+<app-datatable
+  [rows]="rows"
+  [columns]="columns"
+  [length]="count"
+  [limit]="pageSize"
+  (pageChange)="pageOffsetChange.emit($event)"
+  (limitChange)="pageSizeChange.emit($event)"
+>
+</app-datatable>

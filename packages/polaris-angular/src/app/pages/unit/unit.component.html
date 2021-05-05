@@ -1,0 +1,24 @@
+<section>
+  <div class="header">
+    <h1 class="section-label">Units</h1>
+    <button mat-raised-button color="primary" class="action-button" (click)="onClickImportAndUpdateUnitsButton()">
+      <mat-icon>add</mat-icon>IMPORT AND UPDATE UNITS
+    </button>
+  </div>
+
+  <div class="section-filter">
+    <app-select-project [includeAllOption]="true" [(ngModel)]="selectedProjectId" (ngModelChange)="onProjectIdChange()">
+    </app-select-project>
+  </div>
+</section>
+
+<div class="data-section">
+  <mat-tab-group animationDuration="0ms" [selectedIndex]="selectedstatusTabIndex"
+    (selectedTabChange)="onClickStatusTab($event)">
+    <mat-tab label="{{ statusTab.name }} ({{ statusTab.count }})" *ngFor="let statusTab of statusTabs"></mat-tab>
+  </mat-tab-group>
+
+  <app-units-datatable [units]="units" [count]="count" [pageSize]="pageSize"
+    (pageOffsetChange)="onPageOffsetChange($event)" (pageSizeChange)="onPageSizeChange($event)">
+  </app-units-datatable>
+</div>

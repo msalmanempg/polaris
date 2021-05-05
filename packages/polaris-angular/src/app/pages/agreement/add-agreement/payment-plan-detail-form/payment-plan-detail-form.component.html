@@ -1,0 +1,74 @@
+<mat-grid-list cols="6" rowHeight="80px" [formGroup]="paymentPlanForm">
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div class="info-container info-margin-bottom">
+            <h2>
+                Payment Plan
+            </h2>
+            <h3 class="sub-title">
+                Please define a payment plan and you can edit to make it annual or quarterly as you see fit.
+            </h3>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <app-payment-plan [paymentPlanForm]="paymentPlanForm"></app-payment-plan>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="6" [rowspan]="1">
+        <mat-divider></mat-divider>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="3">
+        <div class="info-container">
+            <h2>
+                Documents
+            </h2>
+            <h3 class="sub-title">
+                Upload scanned copies of the required documents</h3>
+            <h3 class="sub-title">
+                Supported Formats: PDF File Size: Max: 5 MB
+            </h3>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <div class="document-section">
+            <app-file-upload [label]="'Agreement to Sell'" (uploadFile)="onFileUpload($event, 'AGREEMENT')"
+                (cancelFile)="onCancelFile('AGREEMENT')"></app-file-upload>
+            <app-file-upload [label]="'Booking Form'" class="margin-left"
+                (uploadFile)="onFileUpload($event, 'BOOKING_FORM')" (cancelFile)="onCancelFile('BOOKING_FORM')">
+            </app-file-upload>
+            <app-file-upload [label]="'Floor Plan'" class="margin-left"
+                (uploadFile)="onFileUpload($event, 'FLOOR_PLAN')" (cancelFile)="onCancelFile('FLOOR_PLAN')">
+            </app-file-upload>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <app-file-upload [label]="'Payment Plan'" (uploadFile)="onFileUpload($event, 'PAYMENT_PLAN')"
+            (cancelFile)="onCancelFile('PAYMENT_PLAN')"></app-file-upload>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <app-file-upload [label]="'other'" (uploadFile)="onFileUpload($event, 'OTHER')"
+            (cancelFile)="onCancelFile('OTHER')"></app-file-upload>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="6" [rowspan]="1">
+        <mat-divider></mat-divider>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div class="info-container">
+            <h2>
+                Agreement Status
+            </h2>
+            <h3 class="sub-title">
+                Choose the Agreement's status
+            </h3>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <app-dropdown [options]="agreementStatusTypeOptions" [searchable]="false" [required]="true"
+            formControlName="status" ngDefaultControl [label]="'Agreement Status'" class="form-field-group">
+        </app-dropdown>
+    </mat-grid-tile>
+</mat-grid-list>

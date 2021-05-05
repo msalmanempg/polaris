@@ -1,0 +1,9 @@
+**/__snapshots__/
+**/.ng_build/
+**/build/
+**/coverage/
+**/dist/
+**/lib/
+**/node_modules/
+jest.config.js
+*.d.ts

@@ -1,0 +1,46 @@
+@import "../../../../../../assets/variables.scss";
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field {
+    width: 50rem;
+}
+
+.group-form-field-container {
+    display: flex;
+    flex-direction: row;
+
+    .form-field-group {
+        width: 24rem;
+        margin-right: 2rem;
+    }
+    .form-field-group-image {
+        width: 20rem;
+        margin-right: 2rem;
+    }
+}
+
+.main-image {
+    height: 7.25rem;
+    width: 7.125rem;
+    margin: 0.5rem;
+}
+
+.image-info-text {
+    margin: 1rem;
+    h3{
+        text-decoration: underline;
+        font-size: 0.875rem;
+        color: map-get($main-colors, gray-secondary-text-color);
+    }
+    .error {
+        color: $validation-error-color;;
+      }
+
+}
+
+.margin-left {
+    margin-left: 1rem;
+}

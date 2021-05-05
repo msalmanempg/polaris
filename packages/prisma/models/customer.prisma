@@ -1,0 +1,49 @@
+model Customer {
+    id             Int                  @id @default(autoincrement())
+    fullName       String               @map("full_name")
+    govtId         String               @map("govt_id")
+    govtIdType     govtIdType           @map("govt_id_type")
+    relationType   relationType         @map("relation_type")
+    guardianName   String               @map("guardian_name")
+    nationality    String
+    passportNumber String?              @map("passport_number")
+    dateOfBirth    DateTime             @map("date_of_birth")
+    gender         Gender
+    meta           Json?
+    attachments    CustomerAttachment[]
+    agreements     AgreementCustomer[]
+    createdAt      DateTime             @default(now()) @map("created_at")
+    updatedAt      DateTime             @updatedAt @map("updated_at")
+
+    @@unique([govtId, govtIdType], name: "Customer_govtId_govtIdType_unique_constraint")
+    @@map(name: "customers")
+}
+
+model CustomerAttachment {
+    id           Int        @id @default(autoincrement())
+    Attachment   Attachment @relation(fields: [attachmentId], references: [id])
+    attachmentId Int
+    Customer     Customer   @relation(fields: [customerId], references: [id])
+    customerId   Int
+    createdAt    DateTime   @default(now()) @map("created_at")
+    updatedAt    DateTime   @updatedAt @map("updated_at")
+
+    @@map("customer_attachments")
+}
+
+enum relationType {
+    father
+    husband
+}
+
+enum Gender {
+    male
+    female
+}
+
+enum customerDocumentType {
+    id_front
+    id_back
+    profile_picture
+    other
+}

@@ -1,0 +1,24 @@
+@import "../../../../../assets/variables.scss";
+
+:host {
+  display: block;
+  outline: none;
+
+  .mat-list-item.active {
+    font-weight: bold;
+  }
+  &:hover,
+  &:focus {
+    > .mat-list-item:not(.expanded) {
+      background-color: #f5f3f3 !important;
+    }
+  }
+}
+
+.mat-list-item {
+  color: map-get($main-colors, gray-primary-text-color);
+
+  .routeIcon {
+    margin-right: 10px;
+  }
+}

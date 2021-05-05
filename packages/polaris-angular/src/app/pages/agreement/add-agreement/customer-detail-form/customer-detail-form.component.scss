@@ -1,0 +1,35 @@
+@import "../../../../../assets/variables.scss";
+
+.info-container {
+    padding-left: 3rem;
+    align-content: flex-start;
+    margin-inline-end: 1rem;
+    margin-top: 2rem;
+}
+
+.sub-title {
+    font-family: Arial;
+    font-style: italic;
+    color: map-get($main-colors, gray-secondary-text-color);
+    opacity: 0.5;
+    font-size: 1.125rem;
+}
+
+.info-margin-bottom {
+    margin-bottom: auto;
+}
+
+.margin-right {
+    margin-right: 100px;
+}
+
+
+.add-button {
+    background-color: $blue-text;
+    color: white;
+}
+
+.add-label {
+    margin-left: 1rem;
+    letter-spacing: 0.15px;
+}

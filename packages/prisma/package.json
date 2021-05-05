@@ -1,0 +1,13 @@
+{
+  "name": "@polaris/prisma",
+  "version": "1.0.0",
+  "description": "data layer for Polaris",
+  "main": "lib/index.js",
+  "repository": "https://github.com/SectorLabs/polaris/tree/main/packages/prisma",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn ttsc -p tsconfig.json",
+    "lint:errors": "eslint --quiet --ext .js,.ts ./",
+    "lint:types": "ttsc --noEmit"
+  }
+}

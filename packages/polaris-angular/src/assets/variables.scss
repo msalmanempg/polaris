@@ -1,0 +1,74 @@
+@import "@angular/material/theming";
+$black: #000000;
+$dark-primary-text: rgba($black, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+
+$light-text: #ffffff;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+$blue-text: #00A4D1;
+
+$mat-primary: (
+  50: #ffffff,
+  100: #F6F6F7,
+  200: #dbdddb,
+  300: #A5A5A5,
+  400: #5B5F62,
+  500: #070707,
+  600: #0c0c0c,
+  700: #030303,
+  800: #11141a,
+  900: #000000,
+  A100: #00000099,
+  A200: #131412,
+  A400: #101110,
+  A700: #535852,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $light-accent-text,
+    A200: $light-accent-text,
+    A400: $light-accent-text,
+    A700: $light-accent-text,
+  ),
+);
+
+$validation-error-color: mat-color($mat_red, 500);
+
+$main-colors: (
+  gray-primary-color: mat-color($mat-primary, 100),
+  gray-primary-label-color: mat-color($mat-primary, 300),
+  gray-primary-text-color: mat-color($mat-primary, 400),
+  gray-secondary-text-color: mat-color($mat-primary, 800),
+  gray-section-heading-color: mat-color($mat-primary, A100),
+);
+
+$letterSpacing: 6.6px;
+
+$alert-success-bg: mat-color($mat-primary, 400) !default;
+$alert-success-text: #fff !default;
+$alert-success-border: darken(adjust-hue($alert-success-bg, -10), 5%) !default;
+
+$alert-danger-bg:  #e65c65 !default;
+$alert-danger-text:  #fff !default;
+$alert-danger-border: darken(adjust-hue($alert-danger-bg, -10), 5%) !default;
+
+$status-badge-background-colors: (
+  "success": #e3f9f1,
+  "error": #ffe2e6,
+  "warning": #fff2e5,
+  "secondary": #eaeaea,
+);

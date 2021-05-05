@@ -1,0 +1,83 @@
+<mat-grid-list cols="6" rowHeight="80px" [formGroup]="agreementForm">
+  <mat-grid-tile [colspan]="2" [rowspan]="2">
+    <div class="info-container">
+      <h2>
+        Lead ID
+      </h2>
+      <h3 class="sub-title">
+        Add the Customer’s Lead ID (e.g. Propforce Lead ID)
+      </h3>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="2">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Lead ID</mat-label>
+      <input matInput type="number" formControlName="leadId" required />
+    </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="6" [rowspan]="1">
+    <mat-divider></mat-divider>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="3">
+    <div class="info-container info-margin-bottom">
+      <h2>
+        Agreement Details
+      </h2>
+      <h3 class="sub-title">
+        Add the Agreement Number for the relevant Project and its Unit.
+      </h3>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="3">
+    <app-agreement-detail [agreementDetailForm]="agreementForm"></app-agreement-detail>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="6" [rowspan]="1">
+    <mat-divider></mat-divider>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="4">
+    <div class="info-container info-margin-bottom">
+      <h2>
+        Booking Details
+      </h2>
+      <h3 class="sub-title">
+        Specify the unit's Booking Price (deal price) and the Down Payment Amount
+      </h3>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="4">
+    <app-agreement-booking formControlName="agreementBooking" ngDefaultControl></app-agreement-booking>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="6" [rowspan]="1">
+    <mat-divider></mat-divider>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="3">
+    <div class="info-container info-margin-bottom">
+      <h2>
+        Sales Representative Details
+      </h2>
+      <h3 class="sub-title">
+        Sales Representative Details
+      </h3>
+    </div>
+  </mat-grid-tile>
+  <div formArrayName="salePersons">
+    <div *ngFor="let salePerson of salePersonForms.controls; let i = index">
+      <mat-grid-tile [colspan]="2" [rowspan]="3" *ngIf="i > 0">
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="4" [rowspan]="3">
+        <app-sales-person [salePersonForm]="getFormGroupAt(i)"></app-sales-person>
+      </mat-grid-tile>
+    </div>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+      <button mat-mini-fab (click)="addSalePerson()" *ngIf="salePersonForms.controls.length" class="add-button">
+        <mat-icon>add</mat-icon>
+      </button>
+      <label *ngIf="salePersonForms.controls.length" class="add-label">Add another Sales Representative</label>
+    </mat-grid-tile>
+  </div>
+</mat-grid-list>

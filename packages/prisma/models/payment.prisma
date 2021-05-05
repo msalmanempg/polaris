@@ -1,0 +1,28 @@
+model ExpectedPayment {
+  id          Int                   @id @default(autoincrement())
+  amount      Int
+  percentage  Int?
+  paymentDate DateTime              @map("payment_date")
+  type        expectedPaymentType
+  Agreement   Agreement             @relation(fields: [agreementId], references: [id])
+  agreementId Int                   @map("agreement_id")
+  meta        Json?
+  dueDate     DateTime              @map("due_date")
+  status      expectedPaymentStatus
+  createdAt   DateTime              @default(now()) @map("created_at")
+  updatedAt   DateTime              @updatedAt @map("updated_at")
+
+  @@map("expected_payments")
+}
+
+enum expectedPaymentType {
+  down_payment
+  installment
+  advance
+  posession
+}
+
+enum expectedPaymentStatus {
+  paid
+  pending
+}

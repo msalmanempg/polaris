@@ -1,0 +1,15 @@
+
+@import "../../../assets/variables.scss";
+
+.status-badge {
+    min-width: max-content;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 1rem;
+}
+  
+@each $key, $value in $status-badge-background-colors {
+    .status-badge-#{$key} {
+        background-color: $value;
+    }
+}

@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`customers Should List all Customers 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "dateOfBirth": "2021-02-19T05:20:01.269Z",
+  "fullName": "Test Customer",
+  "gender": "male",
+  "govtId": "12345-1234567-1",
+  "govtIdType": "cnic",
+  "guardianName": "Test Customer Guardian",
+  "id": Any<Number>,
+  "meta": Object {},
+  "nationality": "Pakistani",
+  "passportNumber": "11111-1111111-1",
+  "relationType": "father",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`customers Should List all Customers 2`] = `
+Object {
+  "createdAt": Any<String>,
+  "dateOfBirth": "2021-02-19T05:20:01.269Z",
+  "fullName": "user abc",
+  "gender": "female",
+  "govtId": "12345-1234567-2",
+  "govtIdType": "nicop",
+  "guardianName": "user abc husband",
+  "id": Any<Number>,
+  "meta": Object {},
+  "nationality": "Pakistani",
+  "passportNumber": "12345-1234567-1",
+  "relationType": "husband",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`customers Should List all Customers 3`] = `
+Object {
+  "createdAt": Any<String>,
+  "dateOfBirth": "2021-02-19T05:20:01.269Z",
+  "fullName": "user xyz",
+  "gender": "male",
+  "govtId": "12345-1234567-3",
+  "govtIdType": "poc",
+  "guardianName": "user abc father",
+  "id": Any<Number>,
+  "meta": Object {},
+  "nationality": "Pakistani",
+  "passportNumber": "12345-7654321-1",
+  "relationType": "father",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`customers Should List all Customers 4`] = `
+Object {
+  "createdAt": Any<String>,
+  "dateOfBirth": "2021-02-19T05:20:01.269Z",
+  "fullName": "user abc",
+  "gender": "female",
+  "govtId": "12345-1234567-4",
+  "govtIdType": "poc",
+  "guardianName": "user abc husband",
+  "id": Any<Number>,
+  "meta": Object {},
+  "nationality": "Pakistani",
+  "passportNumber": "12345-1234567-1",
+  "relationType": "husband",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`customers Should create a new Customer 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "dateOfBirth": "2021-02-19T05:20:01.269Z",
+  "fullName": "Test Customer",
+  "gender": "male",
+  "govtId": "88888-8888888-8",
+  "govtIdType": "cnic",
+  "guardianName": "Test Customer Guardian",
+  "id": Any<Number>,
+  "meta": null,
+  "nationality": "Pakistani",
+  "passportNumber": "11111-1111111-1",
+  "relationType": "father",
+  "updatedAt": Any<String>,
+}
+`;
